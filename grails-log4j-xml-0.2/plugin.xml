@@ -1,0 +1,22 @@
+<plugin name='log4j-xml' version='0.2'>
+  <author>Mingfai Ma</author>
+  <authorEmail>mingfai.ma@gmail.com</authorEmail>
+  <title>Allow configure log4j by Groovy/XML in Grails 1.1</title>
+  <description>\
+ - detect if a log4j.groovy exists in grails-app/conf, if yes, generate a log4j.xml
+ - detect if a log4j.xml exists
+ - set log4j.configuration system property to log4j.xml
+ - store the log4j.xml as string
+ - provide a log4j controller to display the log4j.xml in development enviroment
+</description>
+  <documentation>http://grails.org/Log4j+XML+Plugin</documentation>
+  <resources>
+    <resource>BootStrap</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>spring.resources</resource>
+    <resource>UrlMappings</resource>
+    <resource>org.grails.plugins.log4jxml.Log4jController</resource>
+  </resources>
+  <dependencies />
+</plugin>

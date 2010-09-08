@@ -1,0 +1,30 @@
+'log4j:configuration'("xmlns:log4j": "http://jakarta.apache.org/log4j/", debug: "false") {
+
+  appender(name: 'APP_LOG', 'class': "org.apache.log4j.DailyRollingFileAppender") {
+    errorHandler 'class': "org.apache.log4j.helpers.OnlyOnceErrorHandler"
+    param name: "File", value: "logs/app.log"
+    param name: "Append", value: "false"
+    param name: "DatePattern", value: "'.'yyyy-MM-dd"
+    layout('class': "org.apache.log4j.PatternLayout") {
+      param name: "ConversionPattern", value: "%d %-5p [%-30.40c{1}] %2X{tid} %X{sid} %X{uid} %m%n"
+    }
+  }
+
+  appender(name: "CONSOLE", 'class': "org.apache.log4j.ConsoleAppender") {
+    errorHandler 'class': "org.apache.log4j.helpers.OnlyOnceErrorHandler"
+    param name: "Target", value: "System.out"
+    param name: "Threshold", value: "TRACE"
+    layout('class': "org.apache.log4j.PatternLayout") {
+      param name: "ConversionPattern", value: "%d{ABSOLUTE} %-5p [%c{1}][%X{tid}] %m%n"
+    }
+  }
+
+  'category'(name: 'grails.app', additivity: 'true') {
+    'priority'(value: 'INFO'); 'appender-ref'('ref': "APP_LOG"); 'appender-ref'('ref': "CONSOLE")
+  }
+
+  'root' {
+    'priority' value: "WARN"
+    'appender-ref' ref: "CONSOLE"
+  }
+}
