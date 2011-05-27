@@ -1,0 +1,13 @@
+*/staging/*
+*/bin/*
+*/dist/*
+*/target/*
+*/CHANGE ME
+*/.gradle/*
+*/lock
+*/logs/*.log
+*/*.log
+*/*.db
+*/*.iml
+*/*.ipr
+*/*.iws
