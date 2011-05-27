@@ -1,0 +1,169 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ *
+ * Copyright 1997-2008 Sun Microsystems, Inc. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License. You can obtain
+ * a copy of the License at https://glassfish.dev.java.net/public/CDDL+GPL.html
+ * or glassfish/bootstrap/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at glassfish/bootstrap/legal/LICENSE.txt.
+ * Sun designates this particular file as subject to the "Classpath" exception
+ * as provided by Sun in the GPL Version 2 section of the License file that
+ * accompanied this code.  If applicable, add the following below the License
+ * Header, with the fields enclosed by brackets [] replaced by your own
+ * identifying information: "Portions Copyrighted [year]
+ * [name of copyright owner]"
+ *
+ * Contributor(s):
+ *
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
+ *
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ * Copyright 2004 The Apache Software Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Gant script that executes Grails using an embedded GlassFish server
+ *
+ * @author Vivek Pandey
+ * @author Kohsuke Kawaguchi
+ */
+
+import java.io.File
+import java.net.URL
+import java.util.Collections
+import grails.util.GrailsUtil
+import org.glassfish.grails.MaskingClassLoader
+
+
+Ant.property(environment:"env")
+grailsHome = Ant.antProject.properties."env.GRAILS_HOME"
+def grailsServer = null
+def grailsApp = null
+def war
+autoRecompile = System.getProperty("disable.auto.recompile") ? !(System.getProperty("disable.auto.recompile").toBoolean()) : true
+
+// How often should recompilation occur while the application is running (in seconds)?
+// Defaults to 3s.
+recompileFrequency = System.getProperty("recompile.frequency")
+recompileFrequency = recompileFrequency ? recompileFrequency.toInteger() : 3
+
+
+includeTargets << new File ( "${grailsHome}/scripts/Package.groovy" )
+
+
+shouldPackageTemplates=true
+
+// load GlassFish v3 in a separate classloader to isolate it,
+// in particular from the copy of Jetty.
+def GFV3 = loadGlassFishV3();
+
+ClassLoader loadGlassFishV3() {
+  def jars = []
+  new File("${grailsHome}/lib/glassfish-v3").eachFile {
+      if(it.name.endsWith(".jar"))
+          jars << it.toURL()
+  }
+
+  return new URLClassLoader(jars as URL[],new MaskingClassLoader(
+          this.class.classLoader.rootLoader, ["org.apache.jasper."]));
+}
+
+
+
+target ('default': "Run's a Grails application in GlassFish") {
+    print "Starting GlassFish embedded server..."
+	  depends( checkVersion, configureProxy, packageApp )
+	  runAppGf()
+	  watchContext()
+}
+
+target ( runAppGf : "Main implementation that executes a Grails application") {
+    try {
+		    println "Running Grails application.."
+        configureHttpServer()
+        event("StatusFinal", ["Server running. Browse to http://localhost:$serverPort/$grailsAppName"])
+    } catch(Throwable t) {
+        t.printStackTrace()
+        event("StatusFinal", ["Server failed to start: $t"])
+    }
+}
+
+target( watchContext: "Watches the WEB-INF/classes directory for changes and restarts the server if necessary") {
+    long lastModified = classesDir.lastModified()
+    while(true) {
+        if (autoRecompile) {
+            lastModified = recompileCheck(lastModified) {
+                try {
+                    compile()
+
+                    // reload plugins
+                    loadPlugins()
+
+                    // redeploy
+                    grailsApp.undeploy()
+                    grailsApp = grailsServer.deploy(war)
+                } catch (Throwable e) {
+                    GrailsUtil.sanitize(e)
+                    e.printStackTrace()
+                }
+            }
+        }
+        sleep(recompileFrequency * 1000)
+    }
+}
+
+target( configureHttpServer : "Returns a GlassFish server configured with an HTTP connector") {
+    appName = new File("${grailsAppName}");
+    resource = new File("${basedir}/web-app")
+
+    println "Application name : ${grailsAppName}"
+    println "Web App Root :${basedir}/web-app"
+    println "web.xml:"+ webXmlFile.absolutePath
+
+    war = GFV3.loadClass("org.glassfish.embed.ScatteredWar").newInstance(
+                "${grailsAppName}",
+                resource,
+                webXmlFile,
+                Collections.singleton(classesDir.toURI().toURL()))
+
+    grailsServer = GFV3.loadClass("org.glassfish.embed.GlassFish").newInstance(serverPort)
+    grailsApp = grailsServer.deploy(war)
+}
+
+target( stopServer : "Stops the Grails GlassFish server") {
+	if(grailsServer) {
+		grailsServer.stop()
+	}
+    event("StatusFinal", ["Server stopped"])
+}
