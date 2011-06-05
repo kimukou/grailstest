@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Auto generated on Sun Jun 05 22:51:16 JST 2011 -->
+<classpath>
+    <!-- source paths -->
+    <classpathentry kind="src" path="grails-app/conf" />
+    <classpathentry kind="src" path="grails-app/controllers" />
+    <classpathentry kind="src" path="grails-app/domain" />
+    <classpathentry kind="src" path="grails-app/i18n" />
+    <classpathentry kind="src" path="grails-app/services" />
+    <classpathentry kind="src" path="grails-app/taglib" />
+    <classpathentry kind="src" path="grails-app/utils" />
+    <classpathentry kind="src" path="grails-app/views" />
+    <classpathentry kind="src" path="src/groovy" />
+    <classpathentry kind="src" path="src/java" />
+    <classpathentry kind="src" path="test/integration" />
+    <classpathentry kind="src" path="test/unit" />
+    <!-- output paths -->
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+    <classpathentry kind="output" path="target/classes" />
+    <!-- runtime -->
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.codehaus.groovy/groovy-all/jars/groovy-all-1.7.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.0.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-el/commons-el/jars/commons-el-1.0.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-validator/commons-validator/jars/commons-validator-1.3.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.0_jdk5.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-io/commons-io/jars/commons-io-1.4.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/javax.transaction/jta/jars/jta-1.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.hibernate/ejb3-persistence/jars/ejb3-persistence-1.0.2.GA.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/opensymphony/sitemesh/jars/sitemesh-2.4.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-bootstrap/jars/grails-bootstrap-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-core/jars/grails-core-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-crud/jars/grails-crud-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-gorm/jars/grails-gorm-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-resources/jars/grails-resources-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-spring/jars/grails-spring-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-web/jars/grails-web-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.core/jars/org.springframework.core-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.aop/jars/org.springframework.aop-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.aspects/jars/org.springframework.aspects-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.asm/jars/org.springframework.asm-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.beans/jars/org.springframework.beans-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.context/jars/org.springframework.context-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.context.support/jars/org.springframework.context.support-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.expression/jars/org.springframework.expression-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.instrument/jars/org.springframework.instrument-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.jdbc/jars/org.springframework.jdbc-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.jms/jars/org.springframework.jms-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.orm/jars/org.springframework.orm-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.oxm/jars/org.springframework.oxm-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.transaction/jars/org.springframework.transaction-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.web/jars/org.springframework.web-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.web.servlet/jars/org.springframework.web.servlet-3.0.5.RELEASE.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.5.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.aspectj/aspectjweaver/jars/aspectjweaver-1.6.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/cglib/cglib-nodep/jars/cglib-nodep-2.1_3.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-fileupload/commons-fileupload/jars/commons-fileupload-1.2.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/oro/oro/jars/oro-2.0.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/javax.servlet/jstl/jars/jstl-1.1.2.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.3.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-pool/commons-pool/jars/commons-pool-1.5.5.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/hsqldb/hsqldb/jars/hsqldb-1.8.0.10.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/net.sf.ehcache/ehcache-core/jars/ehcache-core-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/log4j/log4j/jars/log4j-1.2.16.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.5.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.slf4j/jul-to-slf4j/jars/jul-to-slf4j-1.5.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.5.8.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/apache-taglibs/standard/jars/standard-1.1.2.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.3.4.O.jar" />
+    <!-- test -->
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/junit/junit/jars/junit-4.8.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-test/jars/grails-test-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.test/jars/org.springframework.test-3.0.5.RELEASE.jar" />
+    <!-- compile -->
+    <!-- build -->
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.codehaus.gpars/gpars/jars/gpars-0.9.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.tmatesoft.svnkit/svnkit/jars/svnkit-1.3.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant/jars/ant-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-launcher/jars/ant-launcher-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-junit/jars/ant-junit-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-nodeps/jars/ant-nodeps-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/jline/jline/jars/jline-0.9.94.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.2.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/xalan/serializer/jars/serializer-2.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-docs/jars/grails-docs-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-scripts/jars/grails-scripts-1.3.7.jar" />
+    <!-- platform specific -->
+</classpath>
