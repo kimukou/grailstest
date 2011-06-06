@@ -112,9 +112,9 @@ updateEclipseClasspathFile = { newPlugin = null ->
           classesDirPath = classesDirPath.replace('\\', '/')
         }
 
+        classpathentry(kind: 'output', path: classesDirPath.replaceFirst(~/$userHomeRegex/, 'USER_HOME'))
         // [TODO]2011/06/06 classesDirPath is different ?
-        //classpathentry(kind: 'output', path: classesDirPath.replaceFirst(~/$userHomeRegex/, 'USER_HOME'))
-        classpathentry(kind: 'output', path: "web-app/WEB-INF/classes")
+        //classpathentry(kind: 'output', path: "web-app/WEB-INF/classes")
 
         def normalizeFilePath = { file ->
             String path = file.absolutePath
