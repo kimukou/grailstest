@@ -16,6 +16,8 @@
 
 /**
  * @author Andres Almiray
+ * 
+ * modify 20110605 kimukou.buzz
  */
 
 import grails.util.PluginBuildSettings
@@ -32,6 +34,33 @@ target(updateEclipseClasspath: "Update the application's Eclipse classpath file"
 }
 setDefaultTarget('updateEclipseClasspath')
 
+//2011/06/06 kimukou.buzz add start
+def dirCheckFile ={
+    ['grails-app', 'src', 'test'].each { base ->
+        switch(base){
+          case 'grails-app':
+            ant.mkdir(dir:"$base/conf/hibernate")
+            ant.mkdir(dir:"$base/conf/spring")
+            ant.mkdir(dir:"$base/controllers")
+            ant.mkdir(dir:"$base/domain")
+            ant.mkdir(dir:"$base/services")
+            ant.mkdir(dir:"$base/taglib")
+            ant.mkdir(dir:"$base/utils")
+            ant.mkdir(dir:"$base/views")
+            break;
+          case 'src':
+            ant.mkdir(dir:"$base/groovy")
+            ant.mkdir(dir:"$base/java")
+            break;
+          case 'test':
+            ant.mkdir(dir:"$base/integration")
+            ant.mkdir(dir:"$base/unit")
+            break;
+        }
+    }
+}
+//2011/06/06 kimukou.buzz add end
+
 updateEclipseClasspathFile = { newPlugin = null ->
     println "Updating Eclipse classpath file..."
 
@@ -39,9 +68,9 @@ updateEclipseClasspathFile = { newPlugin = null ->
     //grailsSettings.resetDependencies()
     def visitedDependencies = []
 
-		boolean isWindows = System.getProperty("os.name").matches("Windows.*")
-		boolean is64Bit = false
-		String platform = ""
+    boolean isWindows = System.getProperty("os.name").matches("Windows.*")
+    boolean is64Bit = false
+    String platform = ""
 
     //String userHomeRegex = isWindows ? userHome.toString().replace('\\', '\\\\') : userHome.toString()
     //String grailsHomeRegex = isWindows ? grailsHome.toString().replace('\\', '\\\\') : grailsHome.toString()
@@ -58,9 +87,14 @@ updateEclipseClasspathFile = { newPlugin = null ->
     xml.mkp.xmlDeclaration(version: '1.0', encoding: 'UTF-8')
     xml.mkp.comment("Auto generated on ${new Date()}")
     xml.mkp.yieldUnescaped '\n'
+    
+    dirCheckFile()  //2011/06/06 kimukou.buzz add
+
     xml.classpath {
         mkp.yieldUnescaped("\n${indent}<!-- source paths -->")
         ['grails-app', 'src', 'test'].each { base ->
+            //need git commit src if not exists
+            if(!new File(base).exists())ant.mkdir(dir:base)
             new File(base).eachDir { dir ->
                 if (! (dir.name =~ /^\..+/) && dir.name != 'templates') {
                     classpathentry(kind: 'src', path: "${base}/${dir.name}")
@@ -77,8 +111,11 @@ updateEclipseClasspathFile = { newPlugin = null ->
         if(isWindows){
           classesDirPath = classesDirPath.replace('\\', '/')
         }
-        classpathentry(kind: 'output', path: classesDirPath.replaceFirst(~/$userHomeRegex/, 'USER_HOME'))
-        
+
+        // [TODO]2011/06/06 classesDirPath is different ?
+        //classpathentry(kind: 'output', path: classesDirPath.replaceFirst(~/$userHomeRegex/, 'USER_HOME'))
+        classpathentry(kind: 'output', path: "web-app/WEB-INF/classes")
+
         def normalizeFilePath = { file ->
             String path = file.absolutePath
             if(isWindows){
@@ -100,8 +137,8 @@ updateEclipseClasspathFile = { newPlugin = null ->
               path = path.replaceFirst(~/${grailsSettings.baseDir.path}(\\|\/)/, '')
             }
             var = path == originalPath && !path.startsWith(File.separator)
-//println "[○]var=$var"
-//println "[○]path=$path"
+//println "[OK]var=$var"
+//println "[OK]path=$path"
 //println ""
             [kind: var? 'var' : 'lib', path: path]
         }
@@ -156,6 +193,7 @@ updateEclipseClasspathFile = { newPlugin = null ->
     }
 }
 
+//[REMARKS] griffon events copy
 doWithPlugins = { callback = null ->
     if(!callback) return
 

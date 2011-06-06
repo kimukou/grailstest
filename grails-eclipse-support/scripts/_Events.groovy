@@ -43,3 +43,11 @@ eventCreatedArtifact = { type, className ->
     includePluginScript('eclipse-support', 'EclipseUpdate')
     updateEclipseClasspathFile()
 }
+
+//[REMARKS] griffon events copy
+includePluginScript = { pluginName, scriptName ->
+    def pluginHome = getPluginDirForName(pluginName)?.file
+    if(!pluginHome) return
+    def scriptFile = new File(pluginHome,"/scripts/${scriptName}.groovy")
+    if(scriptFile.exists()) includeTargets << scriptFile
+}
