@@ -66,6 +66,7 @@ updateEclipseClasspathFile = { newPlugin = null ->
 
     if(newPlugin) event('SetClasspath', [classLoader])
     //grailsSettings.resetDependencies()
+		resetDependencies()
     def visitedDependencies = []
 
     boolean isWindows = System.getProperty("os.name").matches("Windows.*")
@@ -179,7 +180,7 @@ updateEclipseClasspathFile = { newPlugin = null ->
 */
         }
         mkp.yieldUnescaped("\n${indent}<!-- platform specific -->")
-        visitPlatformDir(new File("${basedir}/lib"))
+        //visitPlatformDir(new File("${basedir}/lib"))
 
         doWithPlugins{ pluginName, pluginVersion, pluginDir ->
             if("${pluginName}-${pluginVersion}" == newPlugin) return
@@ -221,4 +222,38 @@ doWithPlugins = { callback = null ->
     }
 }
 
+
+//BuildSettings
+public void resetDependencies() {
+    resetCompileDependencies()
+    resetRuntimeDependencies()
+    resetTestDependencies()
+    resetProvidedDependencies()
+    resetBuildDependencies()
+}
+
+public void resetCompileDependencies() {
+    grailsSettings.compileDependencies.clear()
+    grailsSettings.compileDependencies.addAll(grailsSettings.defaultCompileDependencies)
+}
+
+public void resetRuntimeDependencies() {
+    grailsSettings.runtimeDependencies.clear()
+    grailsSettings.runtimeDependencies.addAll(grailsSettings.defaultRuntimeDependencies)
+}
+
+public void resetTestDependencies() {
+    grailsSettings.testDependencies.clear()
+    grailsSettings.testDependencies.addAll(grailsSettings.defaultTestDependencies)
+}
+
+public void resetProvidedDependencies() {
+    grailsSettings.providedDependencies.clear()
+    grailsSettings.providedDependencies.addAll(grailsSettings.providedDependencies)
+}
+
+public void resetBuildDependencies() {
+    grailsSettings.buildDependencies.clear()
+    grailsSettings.buildDependencies.addAll(grailsSettings.buildDependencies)
+}
 
