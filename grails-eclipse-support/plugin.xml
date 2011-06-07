@@ -5,12 +5,7 @@
 Brief description of the plugin.
 </description>
   <documentation>http://grails.org/plugin/eclipse-support</documentation>
-  <resources>
-    <resource>BuildConfig</resource>
-    <resource>Config</resource>
-    <resource>DataSource</resource>
-    <resource>UrlMappings</resource>
-  </resources>
+  <resources />
   <dependencies />
   <behavior />
 </plugin>
