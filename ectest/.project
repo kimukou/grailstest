@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Tue Jun 07 12:00:49 JST 2011 -->
+<!-- Auto generated on Tue Jun 07 14:29:47 JST 2011 -->
 <projectDescription>
     <name>ectest</name>
     <comment />
@@ -48,4 +48,10 @@
             <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/jetty7-0.3.2/./src/groovy</location>
         </link>
     </linkedResources>
+    <variableList>
+        <variable>
+            <name>USER_HOME</name>
+            <value>file:/C:/Users/hoge</value>
+        </variable>
+    </variableList>
 </projectDescription>

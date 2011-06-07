@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Tue Jun 07 12:00:49 JST 2011 -->
+<!-- Auto generated on Tue Jun 07 14:29:47 JST 2011 -->
 <classpath>
     <!-- source paths -->
     <classpathentry kind="src" path="grails-app/conf" />
@@ -107,4 +107,9 @@
     <classpathentry kind="var" path="USER_HOME/.grails/1.3.7/projects/ectest/plugins/tomcat-1.3.7/./lib/tomcat-jasper.jar" />
     <classpathentry kind="var" path="USER_HOME/.grails/1.3.7/projects/ectest/plugins/tomcat-1.3.7/./lib/tomcat-juli-adapters.jar" />
     <classpathentry kind="var" path="USER_HOME/.grails/1.3.7/projects/ectest/plugins/tomcat-1.3.7/./lib/tomcat-juli.jar" />
+    <!-- link Entry -->
+    <classpathentry kind="src" path="tomcat-1.3.7-src-groovy" />
+    <classpathentry kind="src" path="tomcat-1.3.7-src-main" />
+    <classpathentry kind="src" path="jetty7-0.3.2-grails-app-i18n" />
+    <classpathentry kind="src" path="jetty7-0.3.2-src-groovy" />
 </classpath>

@@ -191,14 +191,23 @@ updateEclipseClasspathFile = { newPlugin = null ->
             def libDir = new File([pluginsHome, newPlugin, 'lib'].join(File.separator))
             visitPlatformDir(libDir)
         }
+
+				//link src
+        mkp.yieldUnescaped("\n${indent}<!-- link Entry -->")
+				//.project update
+				List linkEntry = updateEclipseProjectFile(newPlugin)
+				linkEntry.each(){
+					classpathentry(kind: 'src', path: it)
+				}
     }
-    updateEclipseProjectFile(newPlugin)
 }
 
 
 
 updateEclipseProjectFile = { newPlugin = null ->
     println "Updating Eclipse project file..."
+
+		List linkEntry =[]
 
     if(newPlugin) event('SetProjectpath', [classLoader])
 
@@ -247,17 +256,18 @@ updateEclipseProjectFile = { newPlugin = null ->
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<type>2</type>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<location>${normalizeFilePathP(dir)}</location>")
             mkp.yieldUnescaped("\n${indent}${indent}</link>")
+						linkEntry.add("${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}")
         }
       }
     }
 
     xml.projectDescription {
-       mkp.yieldUnescaped("\n${indent}<name>$grailsAppName</name>")
-       comment()
-       projects()
-       mkp.yieldUnescaped("\n\n${indent}<!-- buildSpec -->")
+      mkp.yieldUnescaped("\n${indent}<name>$grailsAppName</name>")
+      comment()
+      projects()
+      mkp.yieldUnescaped("\n\n${indent}<!-- buildSpec -->")
 
-       mkp.yieldUnescaped("\n${indent}<buildSpec>")
+      mkp.yieldUnescaped("\n${indent}<buildSpec>")
          buildCommand(){
             mkp.yieldUnescaped("\n${indent}<name>org.eclipse.wst.common.project.facet.core.builder</name>")
             arguments()
@@ -266,16 +276,16 @@ updateEclipseProjectFile = { newPlugin = null ->
             mkp.yieldUnescaped("\n${indent}<name>org.eclipse.jdt.core.javabuilder</name>")
             arguments()
          }
-       mkp.yieldUnescaped("\n${indent}</buildSpec>")
-       mkp.yieldUnescaped("\n\n${indent}<!-- natures -->")
-       natures(){
+      mkp.yieldUnescaped("\n${indent}</buildSpec>")
+      mkp.yieldUnescaped("\n\n${indent}<!-- natures -->")
+      natures(){
             nature('com.springsource.sts.grails.core.nature')
             nature('org.eclipse.jdt.groovy.core.groovyNature')
             nature('org.eclipse.jdt.core.javanature')
             nature('org.eclipse.wst.common.project.facet.core.nature')
-       }
-       mkp.yieldUnescaped("\n\n${indent}<!-- linkedResources -->")
-       mkp.yieldUnescaped("\n${indent}<linkedResources>")
+      }
+      mkp.yieldUnescaped("\n\n${indent}<!-- linkedResources -->")
+      mkp.yieldUnescaped("\n${indent}<linkedResources>")
          doWithPlugins{ pluginName, pluginVersion, pluginDir ->
               if("${pluginName}-${pluginVersion}" == newPlugin) return
               ["$pluginDir/grails-app", "$pluginDir/src", "$pluginDir/test"].each { base ->
@@ -291,8 +301,22 @@ updateEclipseProjectFile = { newPlugin = null ->
               }
               
          }
-       mkp.yieldUnescaped("\n${indent}</linkedResources>")
+      mkp.yieldUnescaped("\n${indent}</linkedResources>")
+			variableList(){
+				variable(){
+          mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>USER_HOME</name>")
+					if(isWindows){
+		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:/$userHomeRegex</value>\n")
+					}
+					else{
+		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:$userHomeRegex</value>\n")
+					}
+          mkp.yieldUnescaped("${indent}${indent}")
+				}
+			}
     }
+
+		return linkEntry
 }
 
 
