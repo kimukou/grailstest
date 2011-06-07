@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Tue Jun 07 14:29:47 JST 2011 -->
+<!-- Auto generated on Tue Jun 07 16:51:51 JST 2011 -->
 <projectDescription>
     <name>ectest</name>
     <comment />
@@ -28,16 +28,6 @@
     <!-- linkedResources -->
     <linkedResources>
         <link>
-            <name>tomcat-1.3.7-src-groovy</name>
-            <type>2</type>
-            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/tomcat-1.3.7/./src/groovy</location>
-        </link>
-        <link>
-            <name>tomcat-1.3.7-src-main</name>
-            <type>2</type>
-            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/tomcat-1.3.7/./src/main</location>
-        </link>
-        <link>
             <name>jetty7-0.3.2-grails-app-i18n</name>
             <type>2</type>
             <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/jetty7-0.3.2/./grails-app/i18n</location>
@@ -51,7 +41,7 @@
     <variableList>
         <variable>
             <name>USER_HOME</name>
-            <value>file:/C:/Users/hoge</value>
+            <value>file:/C:/Users/ksc</value>
         </variable>
     </variableList>
 </projectDescription>
