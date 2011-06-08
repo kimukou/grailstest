@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Mon Jun 06 14:12:29 JST 2011 -->
+<!-- Auto generated on Mon Jun 06 21:42:47 JST 2011 -->
 <classpath>
     <!-- source paths -->
     <classpathentry kind="src" path="grails-app/conf" />
@@ -16,7 +16,7 @@
     <classpathentry kind="src" path="test/unit" />
     <!-- output paths -->
     <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
-    <classpathentry kind="output" path="target/classes" />
+    <classpathentry kind="output" path="web-app/WEB-INF/classes" />
     <!-- runtime -->
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.codehaus.groovy/groovy-all/jars/groovy-all-1.7.8.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.0.jar" />
@@ -74,6 +74,11 @@
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.5.8.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/apache-taglibs/standard/jars/standard-1.1.2.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.3.4.O.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-3.1.0.GA.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/javassist/javassist/jars/javassist-3.11.0.GA.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/antlr/antlr/jars/antlr-2.7.6.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.hibernate/hibernate-ehcache/jars/hibernate-ehcache-3.3.1.GA.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-7.3.1.v20110307.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-7.3.1.v20110307.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-7.3.1.v20110307.jar" />
@@ -87,16 +92,23 @@
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.geronimo.specs/geronimo-jta_1.1_spec/jars/geronimo-jta_1.1_spec-1.1.1.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.eclipse.jetty/jetty-jndi/jars/jetty-jndi-7.3.1.v20110307.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.eclipse.jetty/jetty-websocket/jars/jetty-websocket-7.3.1.v20110307.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-3.1.0.GA.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/javassist/javassist/jars/javassist-3.11.0.GA.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/antlr/antlr/jars/antlr-2.7.6.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.hibernate/hibernate-ehcache/jars/hibernate-ehcache-3.3.1.GA.jar" />
     <!-- test -->
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/junit/junit/jars/junit-4.8.1.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-test/jars/grails-test-1.3.7.jar" />
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.test/jars/org.springframework.test-3.0.5.RELEASE.jar" />
     <!-- compile -->
     <!-- build -->
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.codehaus.gpars/gpars/jars/gpars-0.9.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.tmatesoft.svnkit/svnkit/jars/svnkit-1.3.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant/jars/ant-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-launcher/jars/ant-launcher-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-junit/jars/ant-junit-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-nodeps/jars/ant-nodeps-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/jline/jline/jars/jline-0.9.94.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.2.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/xalan/serializer/jars/serializer-2.7.1.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-docs/jars/grails-docs-1.3.7.jar" />
+    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-scripts/jars/grails-scripts-1.3.7.jar" />
     <!-- platform specific -->
 </classpath>
