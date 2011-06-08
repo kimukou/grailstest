@@ -66,7 +66,7 @@ updateEclipseClasspathFile = { newPlugin = null ->
 
     if(newPlugin) event('SetClasspath', [classLoader])
     //grailsSettings.resetDependencies()
-		resetDependencies()
+    resetDependencies()
     def visitedDependencies = []
 
     boolean isWindows = System.getProperty("os.name").matches("Windows.*")
@@ -191,9 +191,138 @@ updateEclipseClasspathFile = { newPlugin = null ->
             def libDir = new File([pluginsHome, newPlugin, 'lib'].join(File.separator))
             visitPlatformDir(libDir)
         }
+
+				//link src
+        mkp.yieldUnescaped("\n${indent}<!-- link Entry -->")
+				//.project update
+				List linkEntry = updateEclipseProjectFile(newPlugin)
+				linkEntry.each(){
+					classpathentry(kind: 'src', path: it)
+				}
     }
 }
 
+
+
+updateEclipseProjectFile = { newPlugin = null ->
+    println "Updating Eclipse project file..."
+
+		List linkEntry =[]
+
+    if(newPlugin) event('SetProjectpath', [classLoader])
+
+    boolean isWindows = System.getProperty("os.name").matches("Windows.*")
+
+    String userHomeRegex = isWindows ? userHome.toString().replace('\\', '/') : userHome.toString()
+    String grailsHomeRegex = isWindows ? grailsHome.toString().replace('\\', '/') : grailsHome.toString()
+
+    String indent = '    '
+    def writer = new PrintWriter(new FileWriter('.project'))
+    def xml = new MarkupBuilder(new IndentPrinter(writer, indent))
+    xml.setDoubleQuotes(true)
+    xml.mkp.xmlDeclaration(version: '1.0', encoding: 'UTF-8')
+    xml.mkp.comment("Auto generated on ${new Date()}")
+    xml.mkp.yieldUnescaped '\n'
+    
+
+
+    def normalizeFilePathP = { file ->
+        String path = file.absolutePath
+        if(isWindows){
+          path = path.replace('\\', '/')
+        }
+        String originalPath = path
+        path = path.replaceFirst(~/$grailsHomeRegex/, 'GRAILS_HOME')
+        path = path.replaceFirst(~/$userHomeRegex/, 'USER_HOME')
+        boolean var = path != originalPath
+        originalPath = path
+        if(isWindows){
+          basedirPath = grailsSettings.baseDir.path.replace('\\', '/')
+          path = path.replaceFirst(~/${basedirPath}(\/)/, '')
+        }
+        else{
+          path = path.replaceFirst(~/${grailsSettings.baseDir.path}(\\|\/)/, '')
+        }
+        path == originalPath && !path.startsWith(File.separator)
+        return path.toString()
+    }
+
+    def visitPlatformDirP = {mkp,pluginName, pluginVersion,baseDir ->
+      if(!baseDir.exists())return
+      baseDir.eachDir { dir ->
+        if (! (dir.name =~ /^\..+/) && dir.name != 'templates' && dir.name != 'docs') {
+            mkp.yieldUnescaped("\n${indent}${indent}<link>")
+            mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}</name>")
+            mkp.yieldUnescaped("\n${indent}${indent}${indent}<type>2</type>")
+            mkp.yieldUnescaped("\n${indent}${indent}${indent}<location>${normalizeFilePathP(dir)}</location>")
+            mkp.yieldUnescaped("\n${indent}${indent}</link>")
+						linkEntry.add("${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}")
+        }
+      }
+    }
+
+    xml.projectDescription {
+      mkp.yieldUnescaped("\n${indent}<name>$grailsAppName</name>")
+      comment()
+      projects()
+      mkp.yieldUnescaped("\n\n${indent}<!-- buildSpec -->")
+
+      mkp.yieldUnescaped("\n${indent}<buildSpec>")
+         buildCommand(){
+            mkp.yieldUnescaped("\n${indent}<name>org.eclipse.wst.common.project.facet.core.builder</name>")
+            arguments()
+         }
+         buildCommand(){
+            mkp.yieldUnescaped("\n${indent}<name>org.eclipse.jdt.core.javabuilder</name>")
+            arguments()
+         }
+      mkp.yieldUnescaped("\n${indent}</buildSpec>")
+      mkp.yieldUnescaped("\n\n${indent}<!-- natures -->")
+      natures(){
+            nature('com.springsource.sts.grails.core.nature')
+            nature('org.eclipse.jdt.groovy.core.groovyNature')
+            nature('org.eclipse.jdt.core.javanature')
+            nature('org.eclipse.wst.common.project.facet.core.nature')
+      }
+      mkp.yieldUnescaped("\n\n${indent}<!-- linkedResources -->")
+      mkp.yieldUnescaped("\n${indent}<linkedResources>")
+         doWithPlugins{ pluginName, pluginVersion, pluginDir ->
+              if("${pluginName}-${pluginVersion}" == newPlugin) return
+              ["$pluginDir/grails-app", "$pluginDir/src", "$pluginDir/test"].each { base ->
+                  def baseDir = new File(base)
+                  visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
+              }
+         }
+         if(newPlugin) {
+              pluginDirTmp = new File(pluginsHome, newPlugin)
+              ["$pluginDirTmp/grails-app", "$pluginDirTmp/src", "$pluginDirTmp/test"].each { base ->
+                  def baseDir = new File(base)
+                  visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
+              }
+              
+         }
+      mkp.yieldUnescaped("\n${indent}</linkedResources>")
+			variableList(){
+				variable(){
+          mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>USER_HOME</name>")
+					if(isWindows){
+		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:/$userHomeRegex</value>\n")
+					}
+					else{
+		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:$userHomeRegex</value>\n")
+					}
+          mkp.yieldUnescaped("${indent}${indent}")
+				}
+			}
+    }
+
+		return linkEntry
+}
+
+
+
+
+//==============================================================================================
 //[REMARKS] griffon events copy
 doWithPlugins = { callback = null ->
     if(!callback) return

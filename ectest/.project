@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Auto generated on Wed Jun 08 22:41:31 JST 2011 -->
 <projectDescription>
-	<name>ectest</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>com.springsource.sts.grails.core.nature</nature>
-		<nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+    <name>ectest</name>
+    <comment />
+    <projects />
+
+    <!-- buildSpec -->
+    <buildSpec>
+    <buildCommand>
+    <name>org.eclipse.wst.common.project.facet.core.builder</name>
+        <arguments />
+    </buildCommand>
+    <buildCommand>
+    <name>org.eclipse.jdt.core.javabuilder</name>
+        <arguments />
+    </buildCommand>
+    </buildSpec>
+
+    <!-- natures -->
+    <natures>
+        <nature>com.springsource.sts.grails.core.nature</nature>
+        <nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
+        <nature>org.eclipse.jdt.core.javanature</nature>
+        <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+    </natures>
+
+    <!-- linkedResources -->
+    <linkedResources>
+        <link>
+            <name>jetty7-0.3.2-grails-app-i18n</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/jetty7-0.3.2/./grails-app/i18n</location>
+        </link>
+        <link>
+            <name>jetty7-0.3.2-src-groovy</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/jetty7-0.3.2/./src/groovy</location>
+        </link>
+    </linkedResources>
+    <variableList>
+        <variable>
+            <name>USER_HOME</name>
+            <value>file:/C:/Documents and Settings/kimura</value>
+        </variable>
+    </variableList>
 </projectDescription>

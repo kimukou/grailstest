@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Mon Jun 06 21:42:47 JST 2011 -->
+<!-- Auto generated on Wed Jun 08 22:41:30 JST 2011 -->
 <classpath>
     <!-- source paths -->
     <classpathentry kind="src" path="grails-app/conf" />
@@ -98,17 +98,8 @@
     <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.springframework/org.springframework.test/jars/org.springframework.test-3.0.5.RELEASE.jar" />
     <!-- compile -->
     <!-- build -->
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.codehaus.gpars/gpars/jars/gpars-0.9.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.tmatesoft.svnkit/svnkit/jars/svnkit-1.3.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant/jars/ant-1.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-launcher/jars/ant-launcher-1.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-junit/jars/ant-junit-1.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-nodeps/jars/ant-nodeps-1.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/jline/jline/jars/jline-0.9.94.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.2.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/xalan/serializer/jars/serializer-2.7.1.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-docs/jars/grails-docs-1.3.7.jar" />
-    <classpathentry kind="var" path="USER_HOME/.ivy2/cache/org.grails/grails-scripts/jars/grails-scripts-1.3.7.jar" />
     <!-- platform specific -->
+    <!-- link Entry -->
+    <classpathentry kind="src" path="jetty7-0.3.2-grails-app-i18n" />
+    <classpathentry kind="src" path="jetty7-0.3.2-src-groovy" />
 </classpath>

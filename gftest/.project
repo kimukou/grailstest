@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Auto generated on Tue Jun 07 16:30:26 JST 2011 -->
 <projectDescription>
-	<name>gftest</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-	    <nature>com.springsource.sts.grails.core.nature</nature>
-		<nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+    <name>gftest</name>
+    <comment />
+    <projects />
+
+    <!-- buildSpec -->
+    <buildSpec>
+    <buildCommand>
+    <name>org.eclipse.wst.common.project.facet.core.builder</name>
+        <arguments />
+    </buildCommand>
+    <buildCommand>
+    <name>org.eclipse.jdt.core.javabuilder</name>
+        <arguments />
+    </buildCommand>
+    </buildSpec>
+
+    <!-- natures -->
+    <natures>
+        <nature>com.springsource.sts.grails.core.nature</nature>
+        <nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
+        <nature>org.eclipse.jdt.core.javanature</nature>
+        <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+    </natures>
+
+    <!-- linkedResources -->
+    <linkedResources>
+    </linkedResources>
+    <variableList>
+        <variable>
+            <name>USER_HOME</name>
+            <value>file:/C:/Users/hoge</value>
+        </variable>
+    </variableList>
 </projectDescription>
