@@ -38,34 +38,34 @@ task('dists') << { grails 'prod package' }
 
 /*
 test.afterTest { desc, result -> 
-	ant.echo desc.dump()
-	ant.echo result.dump()
+  ant.echo desc.dump()
+  ant.echo result.dump()
 
-	switch(result.getResultType()){
-		case TestResult.ResultType.FAILURE:
-			println "「神は言っている、ここで死ぬ運命ではないと」"
-			break;
-		case TestResult.ResultType.SKIPPED:
-			println "「そんな実行結果で大丈夫か？」"
-			break;
-		case TestResult.ResultType.SUCCESS:
-			println "「大丈夫だ、問題ない」"
-			break;
-	}
+  switch(result.getResultType()){
+    case TestResult.ResultType.FAILURE:
+      println "「神は言っている、ここで死ぬ運命ではないと」"
+      break;
+    case TestResult.ResultType.SKIPPED:
+      println "「そんな実行結果で大丈夫か？」"
+      break;
+    case TestResult.ResultType.SUCCESS:
+      println "「大丈夫だ、問題ない」"
+      break;
+  }
 }
 */
 
 gradle.taskGraph.afterTask { Task task, TaskState state ->
-		println "name="+task.name
-		//if(task.name != "jar")return
+    println "name="+task.name
+    //if(task.name != "jar")return
     if (state.failure) {
         ant.echo "「神は言っている、ここで死ぬ運命ではないと」"
     }
-		else if(state.skipped){
-				ant.echo "「そんな実行結果で大丈夫か？」"
-		}
+    else if(state.skipped){
+        ant.echo "「そんな実行結果で大丈夫か？」"
+    }
     else {
-				ant.echo "「大丈夫だ、問題ない」"
+        ant.echo "「大丈夫だ、問題ない」"
     }
 }
 
@@ -84,19 +84,19 @@ ant.echo "grails<target>:$target"
 //def cmdOpt=System.properties['cmdOpt']
 def cmdOpt=null
 if(project.hasProperty("cmdOpt")){
-	cmdOpt=project.getProperty("cmdOpt")
+  cmdOpt=project.getProperty("cmdOpt")
 }
 ant.echo "cmdOpt=$cmdOpt"
 
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
         ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
             arg(value: target)
-						if(cmdOpt!=null)arg(value: cmdOpt)
+            if(cmdOpt!=null)arg(value: cmdOpt)
         }
     } else {
         ant.exec(executable: 'grails', dir: projectDir, failonerror: true, logError:true ) {
             arg(value: target)
-						if(cmdOpt!=null)arg(value: cmdOpt)
+            if(cmdOpt!=null)arg(value: cmdOpt)
         }
     }
 }
@@ -106,9 +106,9 @@ def grails(Object... params) {
 ant.echo("grails<params>:${params.dump()}")
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
         ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
-						params.each{
-	            arg(value: it)
-						}
+            params.each{
+              arg(value: it)
+            }
         }
     } else {
         ant.exec(executable: 'grails', dir: projectDir, failonerror: true, logError:true ) {
