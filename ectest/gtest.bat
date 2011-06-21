@@ -9,4 +9,5 @@ set JAVA_OPTS=-Dgroovy.source.encoding=UTF-8 -Dfile.encoding=UTF-8
 
 ::gradle test > hogehoge.txt 2>&1
 ::gradle war -PcmdOpt="ectest.zip"  > hogehoge.txt 2>&1
-gradle war > hogehoge.txt 2>&1
+::gradle war > hogehoge.txt 2>&1
+gradle run-app > hogehoge.txt 2>&1
