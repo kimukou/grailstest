@@ -1,0 +1,10 @@
+GIT_HOME=D:/Tooldev/Git
+GRADLE_HOME=D:/Tooldev/gradle-1.0-milestone-3
+ANT_HOME=D:/Tooldev/ant
+MVN_HOME=D:/Tooldev/apache-maven-3.0.3
+GRAILS_HOME=C:/opt/grails-1.3.7
+GRIFFON_HOME=C:/opt/griffon-0.9.3-beta-1
+GROOVY_HOME=C:/opt/groovy-1.8.0
+#JAVA_HOME=c:/opt/jdk
+DATA_HOME=d:/store
+JAVA_OPTS=-Dgroovy.source.encoding=UTF-8 -Dfile.encoding=UTF-8

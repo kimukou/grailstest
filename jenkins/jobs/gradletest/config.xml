@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>D:/opt/ectest</customWorkspace>
+  <builders>
+    <hudson.plugins.gradle.Gradle>
+      <description></description>
+      <switches>-DJAVA_OPTS=$JAVA_OPTS -DPATH=$PATH</switches>
+      <tasks>test --debug</tasks>
+      <rootBuildScriptDir></rootBuildScriptDir>
+      <buildFile></buildFile>
+      <gradleName>gradle-1.0-milestone-3</gradleName>
+      <useWrapper>true</useWrapper>
+    </hudson.plugins.gradle.Gradle>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <com.michelin.cio.hudson.plugins.copytoslave.CopyToSlaveBuildWrapper>
+      <includes>build.gradle</includes>
+      <excludes></excludes>
+      <flatten>false</flatten>
+      <includeAntExcludes>false</includeAntExcludes>
+      <hudsonHomeRelative>false</hudsonHomeRelative>
+      <relativeTo>userContent</relativeTo>
+    </com.michelin.cio.hudson.plugins.copytoslave.CopyToSlaveBuildWrapper>
+    <hudson.plugins.envfile.EnvFileBuildWrapper>
+      <filePath>$JENKINS_HOME/userContent/envfile.txt</filePath>
+    </hudson.plugins.envfile.EnvFileBuildWrapper>
+    <hudson.plugins.setenv.SetEnvBuildWrapper>
+      <localVarText>PATH=$PATH;$GRAILS_HOME/bin</localVarText>
+    </hudson.plugins.setenv.SetEnvBuildWrapper>
+  </buildWrappers>
+</project>

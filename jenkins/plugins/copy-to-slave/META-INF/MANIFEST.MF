@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: F276977
+Build-Jdk: 1.6.0_22
+Extension-Name: copy-to-slave
+Implementation-Title: copy-to-slave
+Implementation-Version: 1.3
+Group-Id: org.jvnet.hudson.plugins
+Short-Name: copy-to-slave
+Long-Name: Copy To Slave Plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/Copy+To+Slave+Plugin
+Plugin-Version: 1.3
+Hudson-Version: 1.375
+Plugin-Developers: Romain Seguy:rseguy:romain.seguy@gmail.com
+

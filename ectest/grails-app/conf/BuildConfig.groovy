@@ -31,3 +31,4 @@ grails.project.dependency.resolution = {
     }
 }
 //grails.plugin.location."eclipse-support"="../grails-eclipse-support"
+grails.plugin.location.atmosphere="../grails-atmosphere"
