@@ -1,6 +1,7 @@
 see 
 	https://bitbucket.org/bgoetzmann/grails-atmosphere-plugin/wiki/Home
 
+	http://codeyeti.com/posts/ajax-push-in-grails-using-the-atmosphere-plugin/
 ---------------------------------------------
 operation memo)
 
