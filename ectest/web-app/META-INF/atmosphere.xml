@@ -1,0 +1,3 @@
+<atmosphere-handlers>
+  <atmosphere-handler context-root='/atmosphere/chat' class-name='ectest.ChatAtmosphereHandler' />
+</atmosphere-handlers>

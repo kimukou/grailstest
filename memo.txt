@@ -16,6 +16,10 @@ grails.project.class.dir = "web-app/WEB-INF/classes"
 どうしてもおかしな挙動が解決しないとき
  USER_HOME/.grails/1.3.7/プロジェクト名を一度消す ？
 
+未対応)
+	grails.plugin.location.XXX でフォルダ参照されているプラグインの対応
+
+----
 
 不明な動作)
 ectest/BuildConfig.groovy
