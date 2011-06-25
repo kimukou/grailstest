@@ -14,3 +14,11 @@
 */target
 */web-app/plugins
 */web-app/WEB-INF/classes
+*/*.iws
+*/*Db.properties
+*/*Db.script
+*/.settings
+*/eclipse
+*/stacktrace.log
+target
+*/hogehoge.txt

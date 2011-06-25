@@ -88,3 +88,43 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+// h2database console setting
+//   url is http://localhost:8080/ecg-ana/h2-console/
+//
+plugins {
+  h2 {
+    system{
+      bindAddress = "127.0.0.1"
+    }
+    /**
+     * For console.standalone, tcpserver, and pgserver, 'disable' is a special option, and the rest are H2 Server options.
+     * Check http://www.h2database.com/javadoc/org/h2/tools/Server.html#r8 
+     */
+    console {
+      servlet {
+        disable = false; mapping = '/h2-console/*' //must end with '/*'
+      }
+      standalone { // refer to the -web* options
+        disable = false; webPort = 8082; webAllowOthers = true; //webSSL = false;
+      }
+    }
+    tcpserver { disable = false; tcpPort = 8043; tcpAllowOthers = true }
+    pgserver { disable = true; pgPort = 5432; pgAllowOthers = true; baseDir = './data/h2'; trace = '' }
+/*
+    database { //
+      sample { // a Spring DriverManagerDataSource will be created as "${databaseName}DataSource"
+        ///
+        // refer to: http://www.h2database.com/html/features.html#database_url
+        // 
+        url = "jdbc:h2:jdbc:h2:mem:devDB"; 
+				user = "sa"; //password = ""
+        init {
+          //disable = true; initClass = "org.grails.plugins.h2.DBInitializer" // create a new instance and call its init( dataSource) method  
+        }
+      }
+    }
+*/
+  }
+}
+
