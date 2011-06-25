@@ -192,13 +192,13 @@ updateEclipseClasspathFile = { newPlugin = null ->
             visitPlatformDir(libDir)
         }
 
-				//link src
+                //link src
         mkp.yieldUnescaped("\n${indent}<!-- link Entry -->")
-				//.project update
-				List linkEntry = updateEclipseProjectFile(newPlugin)
-				linkEntry.each(){
-					classpathentry(kind: 'src', path: it)
-				}
+                //.project update
+                List linkEntry = updateEclipseProjectFile(newPlugin)
+                linkEntry.each(){
+                    classpathentry(kind: 'src', path: it)
+                }
     }
 }
 
@@ -207,7 +207,7 @@ updateEclipseClasspathFile = { newPlugin = null ->
 updateEclipseProjectFile = { newPlugin = null ->
     println "Updating Eclipse project file..."
 
-		List linkEntry =[]
+    List linkEntry =[]
 
     if(newPlugin) event('SetProjectpath', [classLoader])
 
@@ -256,7 +256,7 @@ updateEclipseProjectFile = { newPlugin = null ->
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<type>2</type>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<location>${normalizeFilePathP(dir)}</location>")
             mkp.yieldUnescaped("\n${indent}${indent}</link>")
-						linkEntry.add("${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}")
+                        linkEntry.add("${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}")
         }
       }
     }
@@ -286,37 +286,37 @@ updateEclipseProjectFile = { newPlugin = null ->
       }
       mkp.yieldUnescaped("\n\n${indent}<!-- linkedResources -->")
       mkp.yieldUnescaped("\n${indent}<linkedResources>")
-         doWithPlugins{ pluginName, pluginVersion, pluginDir ->
-              if("${pluginName}-${pluginVersion}" == newPlugin) return
-              ["$pluginDir/grails-app", "$pluginDir/src", "$pluginDir/test"].each { base ->
-                  def baseDir = new File(base)
-                  visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
-              }
-         }
-         if(newPlugin) {
-              pluginDirTmp = new File(pluginsHome, newPlugin)
-              ["$pluginDirTmp/grails-app", "$pluginDirTmp/src", "$pluginDirTmp/test"].each { base ->
-                  def baseDir = new File(base)
-                  visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
-              }
-              
-         }
-      mkp.yieldUnescaped("\n${indent}</linkedResources>")
-			variableList(){
-				variable(){
-          mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>USER_HOME</name>")
-					if(isWindows){
-		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:/$userHomeRegex</value>\n")
-					}
-					else{
-		          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:$userHomeRegex</value>\n")
-					}
-          mkp.yieldUnescaped("${indent}${indent}")
-				}
-			}
-    }
+      doWithPlugins{ pluginName, pluginVersion, pluginDir ->
+          if("${pluginName}-${pluginVersion}" == newPlugin) return
+          ["$pluginDir/grails-app", "$pluginDir/src", "$pluginDir/test"].each { base ->
+              def baseDir = new File(base)
+              visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
+          }
+      }
+      if(newPlugin) {
+          pluginDirTmp = new File(pluginsHome, newPlugin)
+          ["$pluginDirTmp/grails-app", "$pluginDirTmp/src", "$pluginDirTmp/test"].each { base ->
+              def baseDir = new File(base)
+              visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
+          }
+          
+      }
 
-		return linkEntry
+      mkp.yieldUnescaped("\n${indent}</linkedResources>")
+         variableList(){
+             variable(){
+                 mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>USER_HOME</name>")
+                       if(isWindows){
+                          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:/$userHomeRegex</value>\n")
+                       }
+                       else{
+                          mkp.yieldUnescaped("\n${indent}${indent}${indent}<value>file:$userHomeRegex</value>\n")
+                       }
+                       mkp.yieldUnescaped("${indent}${indent}")
+             }
+         }
+    }
+    return linkEntry
 }
 
 

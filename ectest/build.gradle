@@ -36,12 +36,46 @@ task('libs') << { grails 'package' }
 task('test') << { grails 'test-app' }
 task('dists') << { grails 'prod package' }
 
+/*
+test.afterTest { desc, result -> 
+  ant.echo desc.dump()
+  ant.echo result.dump()
+
+  switch(result.getResultType()){
+    case TestResult.ResultType.FAILURE:
+      ant.echo "「神は言っている、ここで死ぬ運命ではないと」"
+      break;
+    case TestResult.ResultType.SKIPPED:
+      ant.echo "「そんな実行結果で大丈夫か？」"
+      break;
+    case TestResult.ResultType.SUCCESS:
+      ant.echo "「大丈夫だ、問題ない」"
+      break;
+  }
+}
+*/
+
+gradle.taskGraph.afterTask { Task task, TaskState state ->
+    println "name="+task.name
+    //if(task.name != "jar")return
+    if (state.failure) {
+        println "「神は言っている、ここで死ぬ運命ではないと」"
+    }
+    else if(state.skipped){
+        println "「そんな実行結果で大丈夫か？」"
+    }
+    else {
+        println "「大丈夫だ。問題ない」"
+    }
+}
+
 //ant.echo args.dump()
 
 // additional run-related tasks
 task('package') << { grails 'war' }
 task('run-app') << { grails 'run-app' }
 task('run-war') << { grails 'run-war' }
+task('war') << { grails 'war' }
 
 
 task('package',args) << { grails ['war',args] }
@@ -51,25 +85,37 @@ task('run-war') << { grails 'run-war' }
 
 // call out to the grails command
 def grails(target) {
-ant.echo("grails<target>:$target")
+
+    ant.echo "grails<target>:$target"
+    //def cmdOpt=System.properties['cmdOpt']
+    def cmdOptArr=null
+    if(project.hasProperty("cmdOpt")){
+      cmdOpt=project.getProperty("cmdOpt")
+      cmdOptArr = cmdOpt.split(" ")
+    }
+    ant.echo "cmdOptArr=${cmdOptArr?.dump()}"
+
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
         ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
             arg(value: target)
+            if(cmdOptArr!=null)cmdOptArr.each{arg(value: it)}
         }
     } else {
         ant.exec(executable: 'grails', dir: projectDir, failonerror: true, logError:true ) {
             arg(value: target)
+            if(cmdOptArr!=null)cmdOptArr.each{arg(value: it)}
         }
     }
 }
 
-def grails(String... params) {
+/*
+def grails(Object... params) {
 ant.echo("grails<params>:${params.dump()}")
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
         ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
-						params.each{
-	            arg(value: it)
-						}
+            params.each{
+              arg(value: it)
+            }
         }
     } else {
         ant.exec(executable: 'grails', dir: projectDir, failonerror: true, logError:true ) {
@@ -77,6 +123,7 @@ ant.echo("grails<params>:${params.dump()}")
         }
     }
 }
+*/
 
 // if you want to use the gradle wrapper
 task('wrapper', type: Wrapper).configure {

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: abayer
+Build-Jdk: 1.6.0_20
+Extension-Name: envfile
+Implementation-Title: envfile
+Implementation-Version: 1.1
+Short-Name: envfile
+Long-Name: Hudson Environment File Plugin
+Url: http://wiki.hudson-ci.org/display/HUDSON/Envfile+Plugin
+Plugin-Version: 1.1
+Hudson-Version: 1.324
+Plugin-Developers: Anders Johansson:ajoajoajo:ajoajoajo@gmail.com
+

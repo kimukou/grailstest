@@ -28,6 +28,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
+		runtime 'org.atmosphere:atmosphere-jgroups:0.7.2'
     }
 }
 //grails.plugin.location."eclipse-support"="../grails-eclipse-support"
