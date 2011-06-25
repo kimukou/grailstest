@@ -39,8 +39,15 @@ task('dists') << { grails 'prod package' }
 //ant.echo args.dump()
 
 // additional run-related tasks
+task('package') << { grails 'war' }
 task('run-app') << { grails 'run-app' }
 task('run-war') << { grails 'run-war' }
+
+
+task('package',args) << { grails ['war',args] }
+task('run-app') << { grails 'run-app' }
+task('run-war') << { grails 'run-war' }
+
 
 // call out to the grails command
 def grails(target) {
@@ -56,7 +63,7 @@ ant.echo("grails<target>:$target")
     }
 }
 
-def grails(Object... params) {
+def grails(String... params) {
 ant.echo("grails<params>:${params.dump()}")
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
         ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
