@@ -2,7 +2,7 @@ package ectest
 
 import grails.test.*
 
-class ChatAtmosphereHandlerAtmosphereHandlerTests extends GrailsUnitTestCase {
+class Atm2ServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

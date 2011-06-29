@@ -11,7 +11,7 @@ atmospherePlugin {
     handlers {
     	// This closure is used to generate the atmosphere.xml using a MarkupBuilder instance in META-INF folder
     	atmosphereDotXml = {
-        	'atmosphere-handler'('context-root': '/atmosphere/chat', 'class-name': 'ectest.ChatAtmosphereHandler')
+        	'atmosphere-handler'('context-root': '/atmosphere/hoge', 'class-name': 'ectest.HogeAtmosphereHandler')
     	}
     }
 }
