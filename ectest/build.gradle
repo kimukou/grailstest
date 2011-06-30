@@ -32,9 +32,8 @@ task('bootstrap') << {
 // mimic the tasks provided by the Java plugin
 task('clean') << { grails 'clean' }
 task('compile') << { grails 'compile' }
-task('libs') << { grails 'package' }
 task('test') << { grails 'test-app' }
-task('dists') << { grails 'prod package' }
+task('package') << { grails 'prod war' }
 
 /*
 test.afterTest { desc, result -> 
@@ -78,7 +77,6 @@ task('war') << { grails 'war' }
 
 // call out to the grails command
 def grails(target) {
-
     ant.echo "grails<target>:$target"
     //def cmdOpt=System.properties['cmdOpt']
     def cmdOptArr=null
@@ -88,16 +86,19 @@ def grails(target) {
     }
     ant.echo "cmdOptArr=${cmdOptArr?.dump()}"
 
+    def gpath=""
     if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
-        ant.exec(executable: 'grails.bat', dir: projectDir, failonerror: true, logError:true ) {
-            arg(value: target)
-            if(cmdOptArr!=null)cmdOptArr.each{arg(value: it)}
-        }
+        gpath = "$GRAILS_HOME_WIN/bin/grails.bat"
+        //gpath = "grails.bat"
     } else {
-        ant.exec(executable: 'grails', dir: projectDir, failonerror: true, logError:true ) {
-            arg(value: target)
-            if(cmdOptArr!=null)cmdOptArr.each{arg(value: it)}
-        }
+        gpath = "$GRAILS_HOME_LINUX/bin/grails"
+        //gpath = "grails.bat"
+    }
+    ant.echo gpath
+    ant.echo projectDir
+    ant.exec(executable: gpath, dir: projectDir, failonerror: true, logError:true ) {
+        arg(value: target)
+        if(cmdOptArr!=null)cmdOptArr.each{arg(value: it)}
     }
 }
 
