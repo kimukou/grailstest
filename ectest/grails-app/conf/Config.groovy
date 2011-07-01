@@ -57,9 +57,11 @@ environments {
         grails.serverURL = "http://www.changeme.com"
     }
     development {
+				grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
         grails.serverURL = "http://localhost:8080/${appName}"
     }
     test {
+				grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
         grails.serverURL = "http://localhost:8080/${appName}"
     }
 
