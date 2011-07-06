@@ -7,11 +7,11 @@ class GreenmailTests extends GroovyTestCase {
     def greenMail
 
     void testSendMail() {
-        Map mail = [message:'こんにちは赤ちゃん', from:'admin@ectest-grails.com', to:'kouichi_kimura@kogasoftware.com', subject:'subject']
+        Map mail = [message:'こんにちは赤ちゃん', from:'admin@ectest-grails.com', to:'kimukou.buzz@gmail.com', subject:'subject']
 
         mailService.sendMail {
-            to mail.to
-            from mail.from
+            to mail.to 
+            from mail.from 
             subject mail.subject
             body mail.message
         }
