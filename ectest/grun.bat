@@ -8,6 +8,9 @@ set JAVA_OPTS=-Dgroovy.source.encoding=UTF-8 -Dfile.encoding=UTF-8
 
 set PATH=%GRIFFON_HOME%/bin;%JAVA_HOME%/bin;%GROOVY_HOME%/bin;%GRAILS_HOME%/bin;%GRADLE_HOME%/bin
 
-gradle run-app > hogehoge.txt 2>&1
+::set GRADLE_OPTS=-Dorg.gradle.daemon=true
+
+gradle run-app
+::gradle run-app > hogehoge.txt 2>&1
 ::gradle run-app -Dserver.port=8090 --info> hogehoge.txt 2>&1
 
