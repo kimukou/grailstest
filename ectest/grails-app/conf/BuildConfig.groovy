@@ -32,3 +32,5 @@ grails.project.dependency.resolution = {
     }
 }
 //grails.plugin.location."eclipse-support"="../grails-eclipse-support"
+grails.plugin.location."grails-standalone"="../plugin_ext/grails-plugins-grails-standalone"
+grails.plugin.location."groovy-plus-plus"="../plugin_ext/grails-groovy-plus-plus-0.4.217"
