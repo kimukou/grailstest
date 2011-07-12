@@ -6,6 +6,13 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
+if(grails.util.Environment.getCurrentEnvironment()==grails.util.Environment.PRODUCTION){
+  grails.config.locations = [ "classpath:${appName}-config.properties",
+                              "classpath:${appName}-config.groovy",
+                              "file:${userHome}/.grails/${appName}-config.properties",
+                              "file:${userHome}/.grails/${appName}-config.groovy"]
+}
+
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
@@ -57,13 +64,46 @@ environments {
         grails.serverURL = "http://www.changeme.com"
     }
     development {
+				//grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
         grails.serverURL = "http://localhost:8080/${appName}"
     }
     test {
+				grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
         grails.serverURL = "http://localhost:8080/${appName}"
     }
-
 }
+
+grails {
+   mail {
+		 sendflag= true
+     host = "smtp.${appName}.com"
+		 subject= "日本語メール"
+		 from = "admin@${appName}.com"
+     port = 25
+     username = "12345678"
+     password = "87654321"
+     props = ["mail.smtp.auth":"true"]
+			//			 ,"mail.smtp.socketFactory.port":"465",
+      //        "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+      //       "mail.smtp.socketFactory.fallback":"false"
+			//				]
+   }
+}
+/*
+grails {
+   mail {
+     host = "localhost"
+     port = 25
+     username = "admin@ectest-grails.com"
+     password = "123456789"
+     props = ["mail.smtp.auth":"true"]
+			//			 ,"mail.smtp.socketFactory.port":"465",
+      //        "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+      //       "mail.smtp.socketFactory.fallback":"false"
+			//				]
+   }
+}
+*/
 
 // log4j configuration
 log4j = {
@@ -103,13 +143,13 @@ plugins {
      */
     console {
       servlet {
-        disable = false; mapping = '/h2-console/*' //must end with '/*'
+        disable = true; mapping = '/h2-console/*' //must end with '/*'
       }
       standalone { // refer to the -web* options
-        disable = false; webPort = 8082; webAllowOthers = true; //webSSL = false;
+        disable = true; webPort = 8082; webAllowOthers = true; //webSSL = false;
       }
     }
-    tcpserver { disable = false; tcpPort = 8043; tcpAllowOthers = true }
+    tcpserver { disable = true; tcpPort = 8043; tcpAllowOthers = true }
     pgserver { disable = true; pgPort = 5432; pgAllowOthers = true; baseDir = './data/h2'; trace = '' }
 /*
     database { //

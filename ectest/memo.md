@@ -20,3 +20,16 @@ grails create-service ectest.MagneticPoetryService
 edit
 
 grails-app/conf/AtmosphereConfig.groovy
+
+
+greenmail doc
+	http://www.grails.org/plugin/greenmail
+	http://www.icegreen.com/greenmail/
+
+
+	http://localhost:8080/ectest/greenmail/list
+
+-----------------------------------------
+JS)
+	http://smoothiecharts.org/
+

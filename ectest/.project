@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto generated on Wed Jun 22 20:00:53 JST 2011 -->
+<!-- Auto generated on Wed Jul 06 19:56:42 JST 2011 -->
 <projectDescription>
     <name>ectest</name>
     <comment />
@@ -27,6 +27,66 @@
 
     <!-- linkedResources -->
     <linkedResources>
+        <link>
+            <name>atmosphere-0.4.1-grails-app-taglib</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/atmosphere-0.4.1/./grails-app/taglib</location>
+        </link>
+        <link>
+            <name>atmosphere-0.4.1-grails-app-views</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/atmosphere-0.4.1/./grails-app/views</location>
+        </link>
+        <link>
+            <name>atmosphere-0.4.1-src-groovy</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/atmosphere-0.4.1/./src/groovy</location>
+        </link>
+        <link>
+            <name>atmosphere-0.4.1-src-java</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/atmosphere-0.4.1/./src/java</location>
+        </link>
+        <link>
+            <name>greenmail-1.2.2-grails-app-controllers</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/greenmail-1.2.2/./grails-app/controllers</location>
+        </link>
+        <link>
+            <name>greenmail-1.2.2-grails-app-views</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/greenmail-1.2.2/./grails-app/views</location>
+        </link>
+        <link>
+            <name>greenmail-1.2.2-src-groovy</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/greenmail-1.2.2/./src/groovy</location>
+        </link>
+        <link>
+            <name>mail-1.0-SNAPSHOT-grails-app-i18n</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/mail-1.0-SNAPSHOT/./grails-app/i18n</location>
+        </link>
+        <link>
+            <name>mail-1.0-SNAPSHOT-grails-app-services</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/mail-1.0-SNAPSHOT/./grails-app/services</location>
+        </link>
+        <link>
+            <name>mail-1.0-SNAPSHOT-grails-app-taglib</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/mail-1.0-SNAPSHOT/./grails-app/taglib</location>
+        </link>
+        <link>
+            <name>mail-1.0-SNAPSHOT-grails-app-views</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/mail-1.0-SNAPSHOT/./grails-app/views</location>
+        </link>
+        <link>
+            <name>mail-1.0-SNAPSHOT-src-groovy</name>
+            <type>2</type>
+            <location>USER_HOME/.grails/1.3.7/projects/ectest/plugins/mail-1.0-SNAPSHOT/./src/groovy</location>
+        </link>
         <link>
             <name>h2-0.2.6-grails-app-i18n</name>
             <type>2</type>

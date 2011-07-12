@@ -86,7 +86,8 @@ updateEclipseClasspathFile = { newPlugin = null ->
     def xml = new MarkupBuilder(new IndentPrinter(writer, indent))
     xml.setDoubleQuotes(true)
     xml.mkp.xmlDeclaration(version: '1.0', encoding: 'UTF-8')
-    xml.mkp.comment("Auto generated on ${new Date()}")
+    //not gooding conflict problem
+    //xml.mkp.comment("Auto generated on ${new Date()}")
     xml.mkp.yieldUnescaped '\n'
     
     dirCheckFile()  //2011/06/06 kimukou.buzz add
@@ -221,7 +222,8 @@ updateEclipseProjectFile = { newPlugin = null ->
     def xml = new MarkupBuilder(new IndentPrinter(writer, indent))
     xml.setDoubleQuotes(true)
     xml.mkp.xmlDeclaration(version: '1.0', encoding: 'UTF-8')
-    xml.mkp.comment("Auto generated on ${new Date()}")
+    //not gooding conflict problem
+    //xml.mkp.comment("Auto generated on ${new Date()}")
     xml.mkp.yieldUnescaped '\n'
     
 
