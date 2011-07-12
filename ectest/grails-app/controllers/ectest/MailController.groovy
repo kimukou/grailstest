@@ -2,6 +2,7 @@ package ectest
 
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 
+//@Typed(TypePolicy.MIXED)
 class MailController{
 		
 		def mailService

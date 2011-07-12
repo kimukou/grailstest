@@ -2,8 +2,9 @@ package ectest
 
 import org.codehaus.groovy.grails.web.util.WebUtils
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
+import net.sf.groovydice.*
 
-
+//@Typed(TypePolicy.MIXED)
 class AtmController {
 	def atm1Service
 	def atm2Service
@@ -51,11 +52,11 @@ class AtmController {
 		//println broadcaster.dump()
 		def c = GrailsClassUtils.getPropertyOrStaticPropertyOrFieldValue(this,"atm${params.idx}Service")
 		println "atm${params.idx}Service:${c.dump()}}"
-		10.times{
+		1000.times{
 			if(c?.data ==0)return
-			sleep 1000
+			sleep 100
 			def burl = "/atmosphere/atmonitor${params.idx}"
-			def broadth = broadcaster[burl.toString()].broadcast(getRandomId())
+			def broadth = broadcaster[burl.toString()].broadcast("${getRandomId()},${Math.random()}")//2.d100}")
 			println "$burl : ${broadth.dump()}"
 		}
 		render "success"

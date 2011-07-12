@@ -100,9 +100,9 @@
                 <h2>iframe list:</h2>
                 <table>
 					<td>
-					<tr><iframe width="200px" height="70px" src="${createLink(controller: 'atm',params:[id:"hoge",idx:"1"])}"></iframe></tr>
-					<tr><iframe width="200px" height="70px" src="${createLink(controller: 'atm',params:[id:"fuga",idx:"2"])}"></iframe></tr>
-					<tr><iframe width="200px" height="70px" src="${createLink(controller: 'atm',params:[id:"maiu",idx:"3"])}"></iframe></tr>
+					<tr><iframe width="400px" height="200px" src="${createLink(controller: 'atm',params:[id:"hoge",idx:"1"])}"></iframe></tr>
+					<tr><iframe width="400px" height="200px" src="${createLink(controller: 'atm',params:[id:"fuga",idx:"2"])}"></iframe></tr>
+					<tr><iframe width="400px" height="200px" src="${createLink(controller: 'atm',params:[id:"maiu",idx:"3"])}"></iframe></tr>
 					</td>
                 </table>
             </div>

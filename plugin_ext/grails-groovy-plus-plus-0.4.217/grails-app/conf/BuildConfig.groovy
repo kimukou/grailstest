@@ -6,7 +6,8 @@ grails.project.dependency.resolution = {
 
     dependencies {
         runtime(
-                [group:'org.mbte.groovypp', name:'groovypp-all', version:'0.4.217']
+                //[group:'org.mbte.groovypp', name:'groovypp-all', version:'0.4.217']
+                [group:'org.mbte.groovypp', name:'groovypp-all', version:'0.4.279_1.7.10']
         )
     }
 }

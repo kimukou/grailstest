@@ -3,6 +3,7 @@ package ectest
 import sun.util.logging.resources.logging;
 import grails.converters.JSON
 
+//@Typed(TypePolicy.MIXED)
 class Atm1Service {
 
 	static transactional = false

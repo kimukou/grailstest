@@ -143,13 +143,13 @@ plugins {
      */
     console {
       servlet {
-        disable = false; mapping = '/h2-console/*' //must end with '/*'
+        disable = true; mapping = '/h2-console/*' //must end with '/*'
       }
       standalone { // refer to the -web* options
-        disable = false; webPort = 8082; webAllowOthers = true; //webSSL = false;
+        disable = true; webPort = 8082; webAllowOthers = true; //webSSL = false;
       }
     }
-    tcpserver { disable = false; tcpPort = 8043; tcpAllowOthers = true }
+    tcpserver { disable = true; tcpPort = 8043; tcpAllowOthers = true }
     pgserver { disable = true; pgPort = 5432; pgAllowOthers = true; baseDir = './data/h2'; trace = '' }
 /*
     database { //
