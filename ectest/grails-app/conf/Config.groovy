@@ -168,3 +168,11 @@ plugins {
   }
 }
 
+
+
+grails{
+	backup{
+		path='backup'
+		cronExpression="0 0/10 * * * ?" 
+	}
+}
