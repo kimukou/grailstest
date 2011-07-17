@@ -1,6 +1,6 @@
 set JAVA_HOME=c:\opt\jdk
-set GROOVY_HOME=C:\opt\Groovy-1.7.10
-set GRIFFON_HOME=C:\opt\griffon-0.9.2
+set GROOVY_HOME=C:\opt\Groovy-1.8.0
+set GRIFFON_HOME=C:\opt\griffon-0.9.3-beta-2
 set GRAILS_HOME=C:\opt\grails-1.3.7
 ::set JAVAFX_HOME=C:\opt\javafx121
 
