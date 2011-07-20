@@ -30,3 +30,12 @@ environments {
         }
     }
 }
+
+//jetty-standalone setting
+standalone {
+    dataSource {
+        dbCreate = "update"
+        url = "jdbc:h2:file:target/prodDb"
+    }
+}
+

@@ -87,7 +87,8 @@ println "jettyDeployDir=$jettyDeployDir"
 	//config outside-setiing
 	ant.copy(file: "grails-app/conf/Config.groovy", tofile: "$grailsAppName/WEB-INF/classes/${grailsAppName}-config.groovy",overwrite:true)
   ant.move(file:grailsAppName,todir:jettyDeployDir)
-  ant.move(file:warName,todir:jettyDeployDir)
+  //ant.move(file:warName,todir:jettyDeployDir)
+  ant.copy(file:warName,todir:jettyDeployDir)
 
 /*
   ant.delete(dir: "$grailsAppName", quiet: true, failonerror: false)
