@@ -105,6 +105,9 @@
 					<tr><iframe width="400px" height="200px" src="${createLink(controller: 'atm',params:[id:"maiu",idx:"3"])}"></iframe></tr>
 					</td>
                 </table>
+
+<gui:richEditor id='myEditor' value='initial value of the editor'/>
+
             </div>
         </div>
     </body>
