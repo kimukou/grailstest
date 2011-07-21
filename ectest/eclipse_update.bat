@@ -6,7 +6,9 @@ set GRADLE_HOME=D:\Tooldev\gradle-1.0-milestone-3
 
 set PATH=%GRIFFON_HOME%/bin;%JAVA_HOME%/bin;%GROOVY_HOME%/bin;%GRAILS_HOME%/bin;%GRADLE_HOME%/bin
 
-::grails clean
-grails eclipse-update
-::gradle run-app -Dserver.port=8090 --info> hogehoge.txt 2>&1
+
+call grails install-plugin ../grails-eclipse-support/grails-eclipse-support-0.1.zip
+call grails eclipse-update
+call grails uninstall-plugin eclipse-support
+::grails eclipse-update
 

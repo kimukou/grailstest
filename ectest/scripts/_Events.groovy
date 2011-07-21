@@ -59,6 +59,13 @@ eventCompileStart ={event->
 
 eventCompileEnd ={event->
   println "== compile end =="
+
+  ant.gspc( destdir:classesDir,
+            srcdir:"${basedir}/web-app",
+            packagename:"${grailsAppName}_webapp",
+            serverpath:"/",
+            classpathref:"grails.compile.classpath",
+            tmpdir:gspTmpDir)
 }
 
 eventWarStart ={event->
@@ -75,7 +82,13 @@ eventWarEnd ={event->
   println "== war end =="
 
 println basedir
-  def upperDir = basedir.substring(0,basedir.lastIndexOf('\\'))
+	def upperDir =""
+    if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
+		upperDir = basedir.substring(0,basedir.lastIndexOf('\\'))
+	}
+	else{
+		upperDir = basedir.substring(0,basedir.lastIndexOf('/'))
+	}
 println "upperDir=$upperDir"
   def jettyDeployDir = "${upperDir}/target"
 println "jettyDeployDir=$jettyDeployDir"
@@ -98,3 +111,58 @@ println "jettyDeployDir=$jettyDeployDir"
 */
 }
 
+
+//======================================================================================
+// stac trace output
+//   http://literal-ice.blogspot.com/2009/12/grailstest-appstacktrace.html
+//
+import grails.build.GrailsBuildListener;
+public class StackTraceDumper implements GrailsBuildListener {
+    void receiveGrailsBuildEvent(String name, Object[] args) {
+        if (name == 'TestFailure') {
+            this.doTestFailure(*args)
+        }
+    }
+    protected doTestFailure(String name, failure, boolean isError) {
+        failure?.printStackTrace()
+    }
+}
+eventListener.addGrailsBuildListener(new StackTraceDumper())
+
+
+//
+// see http://literal-ice.blogspot.com/2010/07/grails133nullpointerexception.html
+//
+/*
+import org.codehaus.groovy.grails.plugins.GrailsPluginManager
+import org.codehaus.groovy.grails.plugins.PluginManagerHolder
+ 
+eventTestPhaseStart = { phase ->
+    if (phase == 'unit') {
+        PluginManagerHolder.pluginManager = [hasGrailsPlugin: { String name -> true }] as GrailsPluginManager
+    }
+}
+ 
+eventTestPhaseEnd = { phase ->
+    if (phase == 'unit') {
+        PluginManagerHolder.pluginManager = null
+    }
+}
+*/
+//======================================================================================
+
+eventTestSuiteEnd = {typeName  ->
+  new File(testReportsDir, "plain").eachFileMatch(~/.*Tests\.txt/) { file ->
+    file.withReader("UTF-8") {reader ->
+      reader.readLine()
+      def line = reader.readLine()
+      // JUnit log line 2 reading ,test failer.console output
+      (line =~ /.*, Failures: (\d), Errors: (\d), .*/).each {m0, m1, m2 ->
+        if (m1 == "0" && m2 == "0") return
+        println "== ${file.name} =============================================="
+        println line
+        while ((line = reader.readLine()) != null) println line
+      }
+    }
+  }
+}
