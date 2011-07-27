@@ -8,7 +8,6 @@
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="GRAILS_HOME" value="${GRAILS_HOME}"/>
-<mapEntry key="GROOVY_HOME" value="${GROOVY_HOME}"/>
 <mapEntry key="JAVA_HOME" value="${JAVA_HOME}"/>
 </mapAttribute>
 <listAttribute key="org.eclipse.jdt.launching.CLASSPATH">

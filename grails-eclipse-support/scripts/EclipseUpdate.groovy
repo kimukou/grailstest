@@ -193,7 +193,20 @@ updateEclipseClasspathFile = { newPlugin = null ->
             visitPlatformDir(libDir)
         }
 
-                //link src
+
+			//linked plugin 2011/07/27 kimukou.buzz add start
+			def config  = new ConfigSlurper().parse(new File('grails-app/conf/BuildConfig.groovy').toURL())
+			config.grails.plugin.location.each{base ->
+					//println "base=[$base],${base.class.name}"
+          def libDir = new File([base.value,'lib'].join(File.separator))
+					//println libDir.dump()
+          if(libDir.exists())visitPlatformDir(libDir)
+			}
+			//linked plugin 2011/07/27 kimukou.buzz add end
+
+
+
+        //link src
         mkp.yieldUnescaped("\n${indent}<!-- link Entry -->")
                 //.project update
                 List linkEntry = updateEclipseProjectFile(newPlugin)
@@ -304,6 +317,22 @@ updateEclipseProjectFile = { newPlugin = null ->
           
       }
 
+			//linked plugin 2011/07/27 kimukou.buzz add start
+			def config  = new ConfigSlurper().parse(new File('grails-app/conf/BuildConfig.groovy').toURL())
+			config.grails.plugin.location.each{base ->
+					println "base=[$base],${base.class.name}"
+          def baseDir = new File(base.value)
+					def pluginName = base.key
+					String str=new File([base.value,"plugin.xml"].join(File.separator)).getText()
+					def tg = new XmlSlurper().parseText(str)
+					def pluginVersion=tg.plugin.'@version'
+					println "pluginVersion=$pluginVersion"
+	        if(baseDir.exists())visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
+			}
+			//linked plugin 2011/07/27 kimukou.buzz add end
+
+
+      //USER_HOME setting
       mkp.yieldUnescaped("\n${indent}</linkedResources>")
          variableList(){
              variable(){
@@ -317,7 +346,7 @@ updateEclipseProjectFile = { newPlugin = null ->
                        mkp.yieldUnescaped("${indent}${indent}")
              }
          }
-    }
+      }
     return linkEntry
 }
 
