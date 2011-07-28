@@ -137,22 +137,27 @@ updateEclipseClasspathFile = { newPlugin = null ->
             if(isWindows){
               path = path.replace('\\', '/')
             }
-						//println "[normalizeFilePath]path=$path"
+						println "[normalizeFilePath]path=$path"
             String originalPath = path
             path = path.replaceFirst(~/$grailsHomeRegex/, 'GRAILS_HOME')
             path = path.replaceFirst(~/$userHomeRegex/, 'USER_HOME')
-			      //path = path.replaceFirst(~/$baseRegex/, '')
-			      //path = path.replaceFirst(~/$baseRegex/, 'PROJECT_LOC')
+			      path = path.replaceFirst(~/$baseRegex/, 'PROJECT_LOC')
             boolean var = path != originalPath
             originalPath = path
             if(isWindows){
               basedirPath = grailsSettings.baseDir.path.replace('\\', '/')
+//println "basedirPath=$basedirPath"
               path = path.replaceFirst(~/${basedirPath}(\/)/, '')
+//println "originalPath=$originalPath"
+//println "path=$path"
             }
             else{
               path = path.replaceFirst(~/${grailsSettings.baseDir.path}(\\|\/)/, '')
             }
             var = path == originalPath && !path.startsWith(File.separator)
+//println "[OK]var=$var"
+//println "[OK]path=$path"
+//println ""
             [kind: var? 'var' : 'lib', path: path]
         }
         def visitDependencies = {List dependencies ->
@@ -256,13 +261,20 @@ updateEclipseProjectFile = { newPlugin = null ->
         if(isWindows){
           path = path.replace('\\', '/')
         }
-				//println "[normalizeFilePathP]path=$path"
+				println "[normalizeFilePathP]path=$path"
         String originalPath = path
         path = path.replaceFirst(~/$grailsHomeRegex/, 'GRAILS_HOME')
         path = path.replaceFirst(~/$userHomeRegex/, 'USER_HOME')
         path = path.replaceFirst(~/$baseRegex/, 'PROJECT_LOC')
         boolean var = path != originalPath
         originalPath = path
+        if(isWindows){
+          basedirPath = grailsSettings.baseDir.path.replace('\\', '/')
+          path = path.replaceFirst(~/${basedirPath}(\/)/, '')
+        }
+        else{
+          path = path.replaceFirst(~/${grailsSettings.baseDir.path}(\\|\/)/, '')
+        }
         path == originalPath && !path.startsWith(File.separator)
         return path.toString()
     }
@@ -270,7 +282,7 @@ updateEclipseProjectFile = { newPlugin = null ->
     def visitPlatformDirP = {mkp,pluginName, pluginVersion,baseDir ->
       if(!baseDir.exists())return
       baseDir.eachDir { dir ->
-        if (! (dir.name =~ /^\..+/) && dir.name != 'templates' && dir.name != 'docs' && dir.name != 'conf') {
+        if (! (dir.name =~ /^\..+/) && dir.name != 'templates' && dir.name != 'docs') {
             mkp.yieldUnescaped("\n${indent}${indent}<link>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}</name>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<type>2</type>")
@@ -323,21 +335,17 @@ updateEclipseProjectFile = { newPlugin = null ->
       }
       //linked plugin 2011/07/27 kimukou.buzz add start
       def config  = new ConfigSlurper().parse(new File('grails-app/conf/BuildConfig.groovy').toURL())
-      config.grails.plugin.location.each{
-          println "it=[$it],${it.class.name}"
-          def pluginDirTmp = new File(it.value)
-          //def pluginName = it.key
-          File pluginXmlFile=new File([it.value,"plugin.xml"].join(File.separator))
+      config.grails.plugin.location.each{base ->
+          println "base=[$base],${base.class.name}"
+          def baseDir = new File(base.value)
+          //def pluginName = base.key
+          File pluginXmlFile=new File([base.value,"plugin.xml"].join(File.separator))
           def pluginXml = new XmlSlurper().parse(pluginXmlFile)
           def pluginName = pluginXml.@name.toString()
           def pluginVersion = pluginXml.@version.toString()
           //def pluginGrailsVersion = pluginXml.@grailsVersion.toString()
           println "pluginVersion=$pluginVersion"
-
-          ["$pluginDirTmp/grails-app", "$pluginDirTmp/src", "$pluginDirTmp/test"].each { base ->
-              def baseDir = new File(base)
-		          visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
-					}
+          visitPlatformDirP(mkp,pluginName, pluginVersion,baseDir)
       }
       //linked plugin 2011/07/27 kimukou.buzz add end
 
