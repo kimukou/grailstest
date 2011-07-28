@@ -269,8 +269,9 @@ updateEclipseProjectFile = { newPlugin = null ->
 
     def visitPlatformDirP = {mkp,pluginName, pluginVersion,baseDir ->
       if(!baseDir.exists())return
+			def exarr=['templates','docs','conf','views','i18n']
       baseDir.eachDir { dir ->
-        if (! (dir.name =~ /^\..+/) && dir.name != 'templates' && dir.name != 'docs' && dir.name != 'conf') {
+        if (! (dir.name =~ /^\..+/) && !(dir.name in exarr) ) {
             mkp.yieldUnescaped("\n${indent}${indent}<link>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<name>${pluginName}-${pluginVersion}-${baseDir.name}-${dir.name}</name>")
             mkp.yieldUnescaped("\n${indent}${indent}${indent}<type>2</type>")
