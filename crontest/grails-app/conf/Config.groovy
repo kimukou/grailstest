@@ -114,12 +114,15 @@ log4j = {
     cronrollingPolicy.activateOptions()
     cronrollingFile.setRollingPolicy cronrollingPolicy
 
-
     def logoutFile = new RollingFileAppender(name: 'logoutFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
     def logoutPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/logout.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/logout.log')
     logoutPolicy.activateOptions()
     logoutFile.setRollingPolicy logoutPolicy
 
+    def utilFile = new RollingFileAppender(name: 'utilFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
+    def utilPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/util.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/util.log')
+    utilPolicy.activateOptions()
+    utilFile.setRollingPolicy utilPolicy
 
     appenders {
         console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n'), layout
@@ -127,14 +130,15 @@ log4j = {
         //rollingFile name:"myAppender", maxFileSize:1024, fileName:"/tmp/logs/myApp.log
         appender cronrollingFile
         appender rollingFile
-        appender logoutFile
+        appender utilFile
     }
 
     debug  'cronFileAppender': "grails.app.task",// quartz
     			 'logoutFileAppender': [
 								"grails.app.controller.LoginController",
 								"grails.app.controller.LogoutController"
-						]
+						],
+						'utilFileAppender':"grails.app.service.util"
 
     info   'rollingFileAppender': [
         'org.mortbay.log',
