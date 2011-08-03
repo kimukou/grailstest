@@ -91,6 +91,11 @@ log4j = {
 }
 */
 
+//
+//
+//		http://d.hatena.ne.jp/nobeans/20090301/1235881796
+//
+
 // log4j configuration
 import org.apache.log4j.rolling.RollingFileAppender
 import org.apache.log4j.rolling.TimeBasedRollingPolicy
@@ -100,32 +105,41 @@ log4j = {
     // appender:
     //
     def rollingFile = new RollingFileAppender(name: 'rollingFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
-    // Rolling policy where log filename is logs/app.log.
-    // Rollover each day, compress and save in logs/backup directory.
     def rollingPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/app.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/app.log')
     rollingPolicy.activateOptions()
     rollingFile.setRollingPolicy rollingPolicy
 
-    def csvrollingFile = new RollingFileAppender(name: 'csvFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
-    // Rolling policy where log filename is logs/app.log.
-    // Rollover each day, compress and save in logs/backup directory.
-    def csvrollingPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/csvupdate.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/csvupdate.log')
-    csvrollingPolicy.activateOptions()
-    csvrollingFile.setRollingPolicy csvrollingPolicy
+    def cronrollingFile = new RollingFileAppender(name: 'cronFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
+    def cronrollingPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/cron.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/cron.log')
+    cronrollingPolicy.activateOptions()
+    cronrollingFile.setRollingPolicy cronrollingPolicy
+
+
+    def logoutFile = new RollingFileAppender(name: 'logoutFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
+    def logoutPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/logout.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/logout.log')
+    logoutPolicy.activateOptions()
+    logoutFile.setRollingPolicy logoutPolicy
 
 
     appenders {
         console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n'), layout
         //file name: 'stactrace', file: 'logs/stactrace.log'
         //rollingFile name:"myAppender", maxFileSize:1024, fileName:"/tmp/logs/myApp.log
-        appender csvrollingFile
+        appender cronrollingFile
         appender rollingFile
+        appender logoutFile
     }
 
-    debug  'csvFileAppender': "org.xxxx"
+    debug  'cronFileAppender': "grails.app.task",// quartz
+    			 'logoutFileAppender': [
+								"grails.app.controller.LoginController",
+								"grails.app.controller.LogoutController"
+						]
+
     info   'rollingFileAppender': [
         'org.mortbay.log',
-        'xxxx.aaaa'
+        'grails.app.controller',
+        'grails.app.service.crontest'
     ]
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
@@ -142,11 +156,36 @@ log4j = {
 /*
     root {
         debug 'stdout'
-        //debug 'stdout','csvFileAppender'
+        //debug 'stdout','cronFileAppender'
         //warn  'stdout','rollingFileAppender'
         additivity = false
     }
 */
+}
+
+// h2database console setting
+//   url is http://localhost:8080/ecg-ana/h2-console/
+//
+plugins {
+  h2 {
+    //system{
+    //  bindAddress = "127.0.0.1"
+    //}
+    /**
+     * For console.standalone, tcpserver, and pgserver, 'disable' is a special option, and the rest are H2 Server options.
+     * Check http://www.h2database.com/javadoc/org/h2/tools/Server.html#r8 
+     */
+    console {
+      servlet {
+        disable = true; mapping = '/h2-console/*' //must end with '/*'
+      }
+      standalone { // refer to the -web* options
+        disable = true; webPort = 8082; webAllowOthers = true; //webSSL = false;
+      }
+    }
+    tcpserver { disable = true; tcpPort = 8043; tcpAllowOthers = true }
+    pgserver { disable = true; pgPort = 5432; pgAllowOthers = true; baseDir = './data/h2'; trace = '' }
+  }
 }
 
 grails{
@@ -155,4 +194,14 @@ grails{
 		cronExpression="0 0/10 * * * ?" 
 	}
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'crontest.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'crontest.UserAuthority'
+grails.plugins.springsecurity.authority.className = 'crontest.Authority'
+grails.plugins.springsecurity.requestMap.className = 'crontest.Requestmap'
+grails.plugins.springsecurity.securityConfigType = grails.plugins.springsecurity.SecurityConfigType.Requestmap//'Requestmap'
+
+grails.plugins.springsecurity.successHandler.defaultTargetUrl='/quartz/list'
 

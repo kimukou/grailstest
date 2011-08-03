@@ -25,7 +25,7 @@ class BackupJob {
    def group = "ectest"
   
    def execute(){
-     println "=====> backup job start! ${new Date()}"
+     log.debug "=====> backup job start! ${new Date()}"
      
      def rootDir = ApplicationHolder.application.config.grails.backup.path
        if(new File("$rootDir/${new Date().format('yyyyMMdd')}").exists()==false){
@@ -40,6 +40,6 @@ class BackupJob {
       '-options', 'compression','zip'
       ] as String[]
      org.h2.tools.Script.main(args ) 
-     println "<===== backup job end! ${new Date()}"
+     log.debug "<===== backup job end! ${new Date()}"
    }
 }
