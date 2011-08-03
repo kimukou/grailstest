@@ -94,7 +94,7 @@ log4j = {
 //
 //
 //		http://d.hatena.ne.jp/nobeans/20090301/1235881796
-//
+//		http://www.grails.org/doc/latest/guide/3.%20Configuration.html#3.1.2%20Logging
 
 // log4j configuration
 import org.apache.log4j.rolling.RollingFileAppender
@@ -131,6 +131,8 @@ log4j = {
         appender cronrollingFile
         appender rollingFile
         appender utilFile
+        appender logoutFile
+				rollingFile name: "stacktraceLog", maxFileSize: 1024, file: "logs/stacktrace.log"
     }
 
     debug  'cronFileAppender': "grails.app.task",// quartz
@@ -142,6 +144,7 @@ log4j = {
 
     info   'rollingFileAppender': [
         'org.mortbay.log',
+        //'grails.app.controller.crontest',
         'grails.app.controller',
         'grails.app.service.crontest'
     ]
@@ -156,7 +159,14 @@ log4j = {
             'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
             'org.springframework',
             'org.hibernate',
-            'net.sf.ehcache.hibernate'
+            'net.sf.ehcache.hibernate',
+						'stacktraceLog':'StackTrace'
+
+
+    additivity {
+        StackTrace=false
+    }
+
 /*
     root {
         debug 'stdout'
