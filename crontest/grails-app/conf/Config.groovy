@@ -95,7 +95,6 @@ log4j = {
 //
 //		http://d.hatena.ne.jp/nobeans/20090301/1235881796
 //		http://www.grails.org/doc/latest/guide/3.%20Configuration.html#3.1.2%20Logging
-
 // log4j configuration
 import org.apache.log4j.rolling.RollingFileAppender
 import org.apache.log4j.rolling.TimeBasedRollingPolicy
@@ -167,14 +166,12 @@ log4j = {
         StackTrace=false
     }
 
-/*
-    root {
-        debug 'stdout'
-        //debug 'stdout','cronFileAppender'
-        //warn  'stdout','rollingFileAppender'
-        additivity = false
-    }
-*/
+    //root {
+    //    debug 'stdout'
+    //    //debug 'stdout','cronFileAppender'
+    //    //warn  'stdout','rollingFileAppender'
+    //    additivity = false
+    //}
 }
 
 // h2database console setting
