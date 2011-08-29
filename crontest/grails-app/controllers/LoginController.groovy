@@ -14,7 +14,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 class LoginController {
 
-  def beforeInterceptor ={log.info "action:$actionUri"}
+
+	def beforeInterceptor ={
+		log.info "[PRE]action:$actionUri params=${params}"
+	}
+	def afterInterceptor  ={
+		log.info "[AFT]action:$actionUri"
+	}
 
 	/**
 	 * Dependency injection for the authenticationTrustResolver.
@@ -25,6 +31,9 @@ class LoginController {
 	 * Dependency injection for the springSecurityService.
 	 */
 	def springSecurityService
+
+
+	def cookieService
 
 	/**
 	 * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
@@ -43,6 +52,14 @@ class LoginController {
 	 */
 	def auth = {
 		def config = SpringSecurityUtils.securityConfig
+
+		def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
+		//def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY]
+		def password = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY]
+		println username
+		println password
+		
+		response.setCookie("username",username,604800)
 
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: config.successHandler.defaultTargetUrl

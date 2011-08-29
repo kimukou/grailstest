@@ -103,10 +103,10 @@ log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    def rollingFile = new RollingFileAppender(name: 'rollingFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
+    def rollingFileX = new RollingFileAppender(name: 'rollingFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
     def rollingPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/app.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/app.log')
     rollingPolicy.activateOptions()
-    rollingFile.setRollingPolicy rollingPolicy
+    rollingFileX.setRollingPolicy rollingPolicy
 
     def cronrollingFile = new RollingFileAppender(name: 'cronFileAppender', layout: pattern(conversionPattern: "%d [%t] %-5p %c{2} %x - %m%n"))
     def cronrollingPolicy = new TimeBasedRollingPolicy(fileNamePattern: 'logs/backup/cron.%d{yyyy-MM-dd}.gz', activeFileName: 'logs/cron.log')
@@ -128,7 +128,7 @@ log4j = {
         //file name: 'stactrace', file: 'logs/stactrace.log'
         //rollingFile name:"myAppender", maxFileSize:1024, fileName:"/tmp/logs/myApp.log
         appender cronrollingFile
-        appender rollingFile
+        appender rollingFileX
         appender utilFile
         appender logoutFile
 				rollingFile name: "stacktraceLog", maxFileSize: 1024, file: "logs/stacktrace.log"

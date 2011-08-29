@@ -56,7 +56,7 @@
 		<g:form url="${request.contextPath}${SpringSecurityUtils.securityConfig.apf.filterProcessesUrl}" id='loginForm' class='cssform' autocomplete='off' method="post">
 			<div>
 				<label>ユーザー名 <br /> 
-					<g:textField class="text-field"	name="j_username" value="${userInstance?.username}" /> <br /> 
+					<g:textField class="text-field"	name="j_username" value="${new org.apache.commons.codec.net.URLCodec().decode(request?.getCookie('username'))}" /> <br /> 
 				</label> 
 				<label>
 					<br />パスワード <br /> 

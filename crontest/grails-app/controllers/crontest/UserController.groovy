@@ -2,7 +2,12 @@ package crontest
 
 class UserController {
 
-    def beforeInterceptor ={log.info "action:$actionUri"}
+    def beforeInterceptor ={
+      log.info "[PRE]action:$actionUri params=${params}"
+    }
+    def afterInterceptor  ={
+      log.info "[AFT]action:$actionUri"
+    }
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 

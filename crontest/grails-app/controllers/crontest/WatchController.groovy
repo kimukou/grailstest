@@ -3,7 +3,12 @@ import util.*
 
 
 class WatchController {
-    def beforeInterceptor ={log.info "action:$actionUri"}
+    def beforeInterceptor ={
+      log.info "[PRE]action:$actionUri params=${params}"
+    }
+    def afterInterceptor  ={
+      log.info "[AFT]action:$actionUri"
+    }
 
     def watchService
     def tellService
