@@ -3,9 +3,14 @@
 // run 
 //		grails prod ConfigExport
 // 
+includeTargets << grailsScript("_GrailsSettings")
 
 @GrabResolver(name="kobo-maven-repo", root="https://github.com/kobo/maven-repo/raw/master/snapshot")
 //@GrabConfig(systemClassLoader=true) // ★GroovyServ need
+//@Grapes([
+//	@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT"),
+//	@GrabExclude('xerces:xercesImpl')
+//])
 @Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT")
 @Grab("commons-io:commons-io:2.0.1")
 
@@ -46,6 +51,7 @@ target(main: "config.groovy parse=>to excel") {
 	println config.flatten().each{k,v->
 		if(k=="log4j"){
 			sheet.getProperty("A${index}").value =(String)k
+			sheet.getProperty("B${index}").value =(String)v.dump()
 			index++
 
 /*
@@ -71,11 +77,11 @@ target(main: "config.groovy parse=>to excel") {
 		//println v
 		index++
 	}
-	//new File("define_config.xls").withOutputStream { book.write(it) } 
-	book.save "define_config.xls"
+	//new File("${grailsAppName}_define_config.xls").withOutputStream { book.write(it) } 
+	book.save "${grailsAppName}_define_config.xls"
 
-	//def desktop = java.awt.Desktop.getDesktop()
-	//desktop.open new File("define_config.xls")
+	def desktop = java.awt.Desktop.getDesktop()
+	desktop.open new File("${grailsAppName}_define_config.xls")
 }
 setDefaultTarget(main)
 
