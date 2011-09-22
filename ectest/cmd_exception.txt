@@ -1,0 +1,124 @@
+Welcome to Grails 1.3.7 - http://grails.org/
+Licensed under Apache Standard License 2.0
+Grails home is set to: C:\opt\grails-1.3.7
+
+Base Directory: D:\workspace36\_github\grailstest\ectest
+Resolving dependencies...
+:: problems summary ::
+:::: WARNINGS
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		::          UNRESOLVED DEPENDENCIES         ::
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		:: org.slf4j#slf4j-api;1.6.1: configuration not found in org.slf4j#slf4j-api;1.6.1: 'master'. It was required from org.atmosphere#atmosphere-jgroups;0.7.2 compile
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+
+Dependencies resolved in 7341ms.
+Running script D:\workspace36\_github\grailstest\ectest\scripts\ConfigExport.groovy
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/Users/ksc/.ivy2/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.5.8.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/Users/ksc/.ivy2/cache/org.sonatype.gossip/gossip/jars/gossip-1.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+Environment set to production
+java.lang.LinkageError: loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy:123)
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy)
+	at grails.util.PluginBuildSettings$getPluginInfos.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfo(PluginBuildSettings.groovy:167)
+	at grails.util.PluginBuildSettings$getPluginInfo.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfoForSource(PluginBuildSettings.groovy:208)
+	at org.codehaus.groovy.transform.ASTTransformationVisitor$3.call(ASTTransformationVisitor.java:302)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:824)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:521)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:497)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:474)
+	at _GrailsEvents_groovy.run(_GrailsEvents_groovy:54)
+	at _GrailsEvents_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy.run(_GrailsArgParsing_groovy:29)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy.run(_GrailsInit_groovy:37)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy.run(_GrailsCompile_groovy:28)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy.run(_GrailsPackage_groovy:38)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsSettings_groovy$run.call(Unknown Source)
+	at ConfigExport.run(ConfigExport:8)
+	at ConfigExport$run.call(Unknown Source)
+	at gant.Gant.prepareTargets(Gant.groovy:606)
+Error loading event script from file [C:\Users\ksc\.grails\1.3.7\projects\ectest\plugins\atmosphere-0.4.1\scripts\_Events.groovy] loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+java.lang.LinkageError: loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy:123)
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy)
+	at grails.util.PluginBuildSettings$getPluginInfos.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfo(PluginBuildSettings.groovy:167)
+	at grails.util.PluginBuildSettings$getPluginInfo.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfoForSource(PluginBuildSettings.groovy:208)
+	at org.codehaus.groovy.transform.ASTTransformationVisitor$3.call(ASTTransformationVisitor.java:302)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:824)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:521)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:497)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:474)
+	at _GrailsEvents_groovy.run(_GrailsEvents_groovy:54)
+	at _GrailsEvents_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy.run(_GrailsArgParsing_groovy:29)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy.run(_GrailsInit_groovy:37)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy.run(_GrailsCompile_groovy:28)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy.run(_GrailsPackage_groovy:38)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsSettings_groovy$run.call(Unknown Source)
+	at ConfigExport.run(ConfigExport:8)
+	at ConfigExport$run.call(Unknown Source)
+	at gant.Gant.prepareTargets(Gant.groovy:606)
+Error loading event script from file [C:\Users\ksc\.grails\1.3.7\projects\ectest\plugins\jetty-standalone-0.2\scripts\_Events.groovy] loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+java.lang.LinkageError: loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy:123)
+	at grails.util.PluginBuildSettings.getPluginInfos(PluginBuildSettings.groovy)
+	at grails.util.PluginBuildSettings$getPluginInfos.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfo(PluginBuildSettings.groovy:167)
+	at grails.util.PluginBuildSettings$getPluginInfo.callCurrent(Unknown Source)
+	at grails.util.PluginBuildSettings.getPluginInfoForSource(PluginBuildSettings.groovy:208)
+	at org.codehaus.groovy.transform.ASTTransformationVisitor$3.call(ASTTransformationVisitor.java:302)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:824)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:521)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:497)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:474)
+	at _GrailsEvents_groovy.run(_GrailsEvents_groovy:54)
+	at _GrailsEvents_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsArgParsing_groovy.run(_GrailsArgParsing_groovy:29)
+	at _GrailsArgParsing_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsInit_groovy.run(_GrailsInit_groovy:37)
+	at _GrailsInit_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsCompile_groovy.run(_GrailsCompile_groovy:28)
+	at _GrailsCompile_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsPackage_groovy.run(_GrailsPackage_groovy:38)
+	at _GrailsPackage_groovy$run.call(Unknown Source)
+	at _GrailsSettings_groovy$run.call(Unknown Source)
+	at ConfigExport.run(ConfigExport:8)
+	at ConfigExport$run.call(Unknown Source)
+	at gant.Gant.prepareTargets(Gant.groovy:606)
+Error loading event script from file [C:\Users\ksc\.grails\1.3.7\projects\ectest\plugins\jetty7-0.3.2\scripts\_Events.groovy] loader constraint violation: when resolving method "javax.xml.parsers.SAXParser.getXMLReader()Lorg/xml/sax/XMLReader;" the class loader (instance of org/codehaus/groovy/grails/cli/support/GrailsRootLoader) of the current class, groovy/util/XmlSlurper, and the class loader (instance of <bootloader>) for resolved class, javax/xml/parsers/SAXParser, have different Class objects for the type org/xml/sax/XMLReader used in the signature
+Unable to load specified config location classpath:ectest-config.properties : class path resource [ectest-config.properties] cannot be opened because it does not exist
+Unable to load specified config location classpath:ectest-config.groovy : class path resource [ectest-config.groovy] cannot be opened because it does not exist
+Unable to load specified config location file:C:\Users\ksc/.grails/ectest-config.properties : C:\Users\ksc\.grails\ectest-config.properties (指定されたファイルが見つかりません。)
+Unable to load specified config location file:C:\Users\ksc/.grails/ectest-config.groovy : C:\Users\ksc\.grails\ectest-config.groovy (指定されたファイルが見つかりません。)
+[grails.config.locations:[classpath:ectest-config.properties, classpath:ectest-config.groovy, file:C:\Users\ksc/.grails/ectest-config.properties, file:C:\Users\ksc/.grails/ectest-config.groovy], grails.project.groupId:ectest, grails.mime.file.extensions:true, grails.mime.use.accept.header:false, grails.mime.types.html:[text/html, application/xhtml+xml], grails.mime.types.xml:[text/xml, application/xml], grails.mime.types.text:text/plain, grails.mime.types.js:text/javascript, grails.mime.types.rss:application/rss+xml, grails.mime.types.atom:application/atom+xml, grails.mime.types.css:text/css, grails.mime.types.csv:text/csv, grails.mime.types.all:*/*, grails.mime.types.json:[application/json, text/json], grails.mime.types.form:application/x-www-form-urlencoded, grails.mime.types.multipartForm:multipart/form-data, grails.views.default.codec:none, grails.views.gsp.encoding:UTF-8, grails.views.gsp.sitemesh.preprocess:true, grails.converters.encoding:UTF-8, grails.scaffolding.templates.domainSuffix:Instance, grails.json.legacy.builder:false, grails.enable.native2ascii:true, grails.logging.jul.usebridge:true, grails.spring.bean.packages:[], grails.exceptionresolver.params.exclude:[password], grails.serverURL:http://www.changeme.com, grails.mail.sendflag:true, grails.mail.host:smtp.ectest.com, grails.mail.subject:日本語メール, grails.mail.from:admin@ectest.com, grails.mail.port:25, grails.mail.username:12345678, grails.mail.password:87654321, grails.mail.props.mail.smtp.auth:true, grails.backup.path:backup, grails.backup.cronExpression:0 0/10 * * * ?, log4j:Config$_run_closure3@456a0c, plugins.h2.system.bindAddress:127.0.0.1, plugins.h2.console.servlet.disable:true, plugins.h2.console.servlet.mapping:/h2-console/*, plugins.h2.console.standalone.disable:true, plugins.h2.console.standalone.webPort:8082, plugins.h2.console.standalone.webAllowOthers:true, plugins.h2.tcpserver.disable:true, plugins.h2.tcpserver.tcpPort:8043, plugins.h2.tcpserver.tcpAllowOthers:true, plugins.h2.pgserver.disable:true, plugins.h2.pgserver.pgPort:5432, plugins.h2.pgserver.pgAllowOthers:true, plugins.h2.pgserver.baseDir:./data/h2, plugins.h2.pgserver.trace:, dataSource.pooled:true, dataSource.driverClassName:org.h2.Driver, dataSource.username:sa, dataSource.password:, dataSource.dbCreate:update, dataSource.url:jdbc:h2:file:target/prodDb, hibernate.cache.use_second_level_cache:true, hibernate.cache.use_query_cache:true, hibernate.cache.provider_class:net.sf.ehcache.hibernate.EhCacheProvider, standalone.dataSource.dbCreate:update, standalone.dataSource.url:jdbc:h2:file:target/prodDb]

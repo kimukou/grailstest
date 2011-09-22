@@ -4,12 +4,15 @@
 //		grails prod ConfigExport
 // 
 includeTargets << grailsScript("_GrailsSettings")
+//==== loading Config.groovy ===
+includeTargets << grailsScript("_GrailsPackage")
+//==== loading Config.groovy ===
 
 @GrabResolver(name="kobo-maven-repo", root="https://github.com/kobo/maven-repo/raw/master/snapshot")
 //@GrabConfig(systemClassLoader=true) // ★GroovyServ need
 //@Grapes([
 //	@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT"),
-//	@GrabExclude('xerces:xercesImpl')
+//	@GrabExclude(':xmlbeans')
 //])
 @Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT")
 @Grab("commons-io:commons-io:2.0.1")
@@ -40,10 +43,17 @@ target(main: "config.groovy parse=>to excel") {
 	// 1st sheet get
 	def sheet = book[0] // 1st sheet
 
+//==== loading Config.groovy ===
+/*
 	String str = new File("grails-app/conf/Config.groovy").getText("UTF-8")
 	//println str
 	def config  = new ConfigSlurper().parse(str)
 	//println config
+*/
+	//compile()
+	def config = createConfig()
+//==== loading Config.groovy ===
+
 	index = 3
 
 	sheet.A2.value = "define"
