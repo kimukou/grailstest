@@ -28,7 +28,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
-				runtime 'org.atmosphere:atmosphere-jgroups:0.7.2'
+				//runtime 'org.atmosphere:atmosphere-jgroups:0.7.2'
 				compile 'net.sf.groovydice:groovydice:1.4.1'
 				runtime 'net.sf.groovydice:groovydice:1.4.1'
     }

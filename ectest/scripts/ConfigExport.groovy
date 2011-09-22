@@ -3,18 +3,18 @@
 // run 
 //		grails prod ConfigExport
 // 
-includeTargets << grailsScript("_GrailsSettings")
-//==== loading Config.groovy ===
+
+includeTargets << grailsScript("Init")
 includeTargets << grailsScript("_GrailsPackage")
-//==== loading Config.groovy ===
 
 @GrabResolver(name="kobo-maven-repo", root="https://github.com/kobo/maven-repo/raw/master/snapshot")
 //@GrabConfig(systemClassLoader=true) // ★GroovyServ need
-//@Grapes([
-//	@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT"),
-//	@GrabExclude(':xmlbeans')
-//])
-@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT")
+@Grapes([
+	@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT"),
+	@GrabExclude('xml-apis:xml-apis'),
+	@GrabExclude('xml-apis:xmlParserAPIs')
+])
+//@Grab("org.jggug.kobo:gexcelapi:0.3-SNAPSHOT")
 @Grab("commons-io:commons-io:2.0.1")
 
 import org.jggug.kobo.gexcelapi.GExcel
@@ -44,14 +44,9 @@ target(main: "config.groovy parse=>to excel") {
 	def sheet = book[0] // 1st sheet
 
 //==== loading Config.groovy ===
-/*
-	String str = new File("grails-app/conf/Config.groovy").getText("UTF-8")
-	//println str
-	def config  = new ConfigSlurper().parse(str)
-	//println config
-*/
-	//compile()
-	def config = createConfig()
+		compile()
+    createConfig()
+    println config
 //==== loading Config.groovy ===
 
 	index = 3
@@ -90,8 +85,8 @@ target(main: "config.groovy parse=>to excel") {
 	//new File("${grailsAppName}_define_config.xls").withOutputStream { book.write(it) } 
 	book.save "${grailsAppName}_define_config.xls"
 
-	//def desktop = java.awt.Desktop.getDesktop()
-	//desktop.open new File("${grailsAppName}_define_config.xls")
+	def desktop = java.awt.Desktop.getDesktop()
+	desktop.open new File("${grailsAppName}_define_config.xls")
 }
 setDefaultTarget(main)
 
