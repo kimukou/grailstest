@@ -80,8 +80,8 @@ target(main: "config.groovy parse=>to excel") {
 	//new File("${grailsAppName}_define_config.xls").withOutputStream { book.write(it) } 
 	book.save "${grailsAppName}_define_config.xls"
 
-	def desktop = java.awt.Desktop.getDesktop()
-	desktop.open new File("${grailsAppName}_define_config.xls")
+	//def desktop = java.awt.Desktop.getDesktop()
+	//desktop.open new File("${grailsAppName}_define_config.xls")
 }
 setDefaultTarget(main)
 
